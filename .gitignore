@@ -1,0 +1,15 @@
+node_modules
+.next
+.app-build
+.verify-*
+out
+coverage
+.vercel
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+.verify-build
+.verify-build-2
+.verify-home
