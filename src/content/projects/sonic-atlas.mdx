@@ -1,0 +1,42 @@
+---
+title: "Small (Blogging App)"
+slug: "small-blogging-app"
+summary: "A serverless blogging platform built on Cloudflare Workers with edge-validated JWT auth, stateless APIs, and low-latency content delivery."
+roles:
+  - "Backend Engineer"
+  - "Full-Stack Developer"
+stack:
+  - "Hono.js"
+  - "Cloudflare Workers"
+  - "Prisma"
+  - "JWT"
+  - "PostgreSQL"
+  - "React"
+  - "TypeScript"
+  - "Recoil"
+  - "Vite"
+  - "Tailwind CSS"
+  - "Motion.dev"
+impact: "Eliminated traditional server infrastructure, reduced hosting costs to near zero, and cut response latency by 40% with an edge-native design."
+links: []
+featured: false
+themeTag: "music"
+order: 3
+---
+
+### Problem
+
+A blogging product should feel responsive and scalable without depending on long-lived servers or expensive hosting overhead.
+
+### Approach
+
+I architected the app around an edge-first backend and stateless request handling:
+
+- deployed the backend on Cloudflare Workers to eliminate traditional server management
+- designed stateless REST APIs with JWT validation at the edge using Hono.js
+- integrated Prisma with PostgreSQL under serverless constraints and handled connection limitations cleanly
+- paired the backend with a React, Recoil, and Vite frontend for a responsive publishing workflow
+
+### Outcome
+
+The platform proved that an edge-native architecture could lower cost, reduce latency, and still support a practical full-stack developer experience.

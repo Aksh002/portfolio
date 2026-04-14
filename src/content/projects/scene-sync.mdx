@@ -1,0 +1,41 @@
+---
+title: "AI-Powered Manim Video Generation Platform"
+slug: "ai-powered-manim-video-generation-platform"
+summary: "A prompt-to-video system that turns natural-language educational prompts into executable Manim animations with preview, download, and retry workflows."
+roles:
+  - "Full-Stack Developer"
+  - "Backend Engineer"
+  - "AI Workflow Builder"
+stack:
+  - "FastAPI"
+  - "Python"
+  - "Next.js"
+  - "TypeScript"
+  - "Manim"
+  - "OpenAI / Ollama"
+  - "Redis"
+  - "RQ"
+  - "Docker Compose"
+impact: "Built a guarded async rendering pipeline with validation, sandboxing, error-aware retries, and iterative code editing."
+links: []
+featured: true
+themeTag: "anime"
+order: 2
+---
+
+### Problem
+
+Prompt-to-code generation becomes risky when the output is executable animation code. The challenge was to make the system useful, asynchronous, and safe enough for iterative rendering.
+
+### Approach
+
+I designed the platform as a modular render pipeline rather than a single prompt endpoint:
+
+- exposed dedicated APIs for generate, render, status, video delivery, and regeneration flows
+- used Redis and RQ to orchestrate async render jobs and persistent job-state tracking
+- added AST validation and sandboxed execution with scene checks, unsafe import blocking, and Docker resource limits
+- built an error-feedback retry loop plus a Monaco-powered interface for prompt edits and re-rendering
+
+### Outcome
+
+The result is a full-stack educational video generation product with safer execution, clearer debugging, and a significantly better iteration loop for generated Manim code.

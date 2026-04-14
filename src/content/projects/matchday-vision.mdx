@@ -1,0 +1,43 @@
+---
+title: "Paytm (Payments Platform)"
+slug: "paytm-payments-platform"
+summary: "A modular payments platform built around user and merchant portals, secure authentication, and asynchronous transaction flows."
+roles:
+  - "Full-Stack Developer"
+  - "Backend Engineer"
+stack:
+  - "Next.js"
+  - "TypeScript"
+  - "Node.js"
+  - "Express.js"
+  - "PostgreSQL"
+  - "Prisma"
+  - "NextAuth.js"
+  - "Docker"
+  - "AWS"
+  - "Turborepo"
+impact: "Designed microservice-style boundaries for payments, authentication, and transaction processing across a scalable monorepo."
+links:
+  - label: "GitHub"
+    href: "https://github.com/Aksh002/Paytm-project-adv"
+featured: true
+themeTag: "football"
+order: 1
+---
+
+### Problem
+
+Payment products need secure authentication, clean service boundaries, and reliable transaction handling, especially when user and merchant experiences evolve in parallel.
+
+### Approach
+
+I built the system like a modular product suite with backend-first thinking:
+
+- used Turborepo to model boundaries between payments, auth, and transaction services
+- implemented multi-provider authentication with NextAuth.js
+- designed asynchronous payment flows using Express.js webhooks and job queues
+- Dockerized services and wired CI/CD-oriented deployment for scalability and minimal downtime
+
+### Outcome
+
+The result is a secure P2P and P2M payments platform that demonstrates monorepo architecture, full-stack coordination, and production-minded backend design.
