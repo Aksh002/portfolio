@@ -3,12 +3,12 @@ import Link from "next/link";
 import { ArrowUpRight, Globe, MapPin } from "lucide-react";
 
 import CometCardDemo from "@/components/comet-card-demo";
+import { AboutInterestsPlayer } from "@/components/site/about-interests-player";
 import { PageShell } from "@/components/site/page-shell";
 import { Reveal } from "@/components/site/reveal";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import {
   experienceItems,
-  interestWorlds,
   profileIntro,
   skillGroups,
 } from "@/lib/site";
@@ -56,7 +56,7 @@ export default function AboutPage() {
       </Reveal>
 
       <Reveal className="space-y-8">
-        <div className="grid gap-5  xl:items-stretch">
+        <div className="space-y-5">
           <div className="space-y-3 xl:pr-3">
             <p className="text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
               Skills / Capability map
@@ -71,14 +71,14 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid xl:grid-cols-[minmax(260px,0.9fr)_repeat(2,minmax(0,1fr))]">
+          <div className="grid gap-5 xl:grid-cols-2 xl:grid-rows-2 xl:items-stretch">
             {skillGroups.map((group, index) => {
-            const palettes = [
+            const palettes: number[][][] = [
               [[184, 255, 111], [249, 255, 223]],
               [[74, 214, 255], [208, 244, 255]],
               [[255, 141, 111], [255, 214, 176]],
               [[214, 167, 255], [165, 215, 255]],
-            ] as const;
+            ];
             const accentClasses = [
               "text-[color:var(--accent)]",
               "text-[color:var(--accent-secondary)]",
@@ -89,7 +89,7 @@ export default function AboutPage() {
             return (
               <section
                 key={group.category}
-                className="group relative min-h-[28rem] overflow-hidden rounded-[30px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_6%,rgba(255,255,255,0.2)),color-mix(in_srgb,var(--background)_2%,rgba(255,255,255,0.06)))] p-5 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)]"
+                className="group relative min-h-[28rem] overflow-hidden rounded-[30px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_88%,rgba(255,255,255,0.58)),color-mix(in_srgb,var(--page-mid)_78%,rgba(255,255,255,0.24)))] p-5 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md"
               >
                 <div className="absolute inset-0">
                   <CanvasRevealEffect
@@ -97,16 +97,16 @@ export default function AboutPage() {
                     containerClassName="bg-transparent"
                     colors={palettes[index]}
                     dotSize={2}
-                    fadeColor="rgb(5 8 16 / 0.88)"
+                    fadeColor="var(--page-base)"
                   />
                 </div>
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,9,16,0.12),rgba(6,9,16,0.42)_38%,rgba(6,9,16,0.88)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_10%,rgba(255,255,255,0.06)),color-mix(in_srgb,var(--page-base)_34%,transparent)_34%,color-mix(in_srgb,var(--page-base)_88%,transparent)_100%)]" />
                 <div className="relative flex h-full flex-col">
                   <div className="space-y-2">
                     <p className="text-[10px] uppercase tracking-[0.28em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
                       {group.category}
                     </p>
-                    <h3 className="text-[1.45rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                    <h3 className="text-[1.85rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
                       {group.category}
                     </h3>
                   </div>
@@ -115,7 +115,7 @@ export default function AboutPage() {
                     {group.items.map((item) => (
                       <div
                         key={item.name}
-                        className="rounded-[20px] border border-[color:color-mix(in_srgb,var(--text-strong)_8%,transparent)] bg-[color:rgba(6,9,16,0.34)] px-4 py-4 backdrop-blur-sm"
+                        className="rounded-[20px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--page-base)_78%,rgba(255,255,255,0.34))] px-4 py-4 backdrop-blur-sm"
                       >
                         <p className={`text-sm font-medium ${accentClasses[index]}`}>
                           {item.name}
@@ -131,67 +131,11 @@ export default function AboutPage() {
             );
           })}
           </div>
-
-          
         </div>
       </Reveal>
 
       <Reveal className="space-y-8">
-        <div className="space-y-3">
-          <p className="text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
-            Interests / Influence
-          </p>
-          <h2 className="display max-w-[12ch] text-[clamp(2.3rem,4.4vw,4.8rem)] font-semibold uppercase leading-[0.92] tracking-[-0.06em] text-[color:var(--text-strong)]">
-            References that actually change the interface.
-          </h2>
-          <p className="max-w-[42rem] text-[15px] leading-8 text-[color:color-mix(in_srgb,var(--text-strong)_70%,transparent)]">
-            These aren&apos;t decorations pasted over the work. They shape pacing,
-            framing, tension, and the way information gets revealed.
-          </p>
-        </div>
-        <div className="grid gap-5 lg:grid-cols-3">
-          {interestWorlds.map((world) => (
-            <article
-              key={world.key}
-              className="group relative overflow-hidden rounded-[30px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.28)),color-mix(in_srgb,var(--background)_2%,rgba(255,255,255,0.08)))] p-6 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md"
-            >
-              <div
-                className={`absolute inset-0 ${world.key === "football" ? "bg-[radial-gradient(circle_at_top_left,rgba(184,255,111,0.22),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(74,214,255,0.12),transparent_30%)]" : world.key === "anime" ? "bg-[radial-gradient(circle_at_top_left,rgba(255,141,111,0.2),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,214,176,0.12),transparent_30%)]" : "bg-[radial-gradient(circle_at_top_left,rgba(74,214,255,0.2),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(184,255,111,0.1),transparent_30%)]"}`}
-              />
-              <div className="relative space-y-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.3em] text-[color:color-mix(in_srgb,var(--text-strong)_50%,transparent)]">
-                      {world.kicker}
-                    </p>
-                    <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
-                      {world.title}
-                    </h3>
-                  </div>
-                  <span className="rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_6%,rgba(255,255,255,0.16))] p-2 text-[color:color-mix(in_srgb,var(--text-strong)_70%,transparent)] transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </div>
-                <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_78%,transparent)]">
-                  {world.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {world.motifs.map((motif) => (
-                    <span
-                      key={motif}
-                      className="rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_8%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_4%,rgba(255,255,255,0.1))] px-3 py-1.5 text-xs text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)]"
-                    >
-                      {motif}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_66%,transparent)]">
-                  {world.uiTreatment}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <AboutInterestsPlayer />
       </Reveal>
 
       <Reveal className="space-y-8">
