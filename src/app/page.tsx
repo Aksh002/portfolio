@@ -22,18 +22,7 @@ export default async function HomePage() {
 
       <AboutMeSurface />
 
-      <Reveal className="page-section space-y-8">
-        <SectionHeading
-          eyebrow="Worlds"
-          title="One portfolio, three distinct energy systems."
-          description="The home page is structured like a curated crossover. Football brings tactical shape, anime brings scene-making, and music brings rhythm to the way content moves."
-        />
-        <div className="grid gap-5 lg:grid-cols-3">
-          {interestWorlds.map((world) => (
-            <WorldCard key={world.key} world={world} />
-          ))}
-        </div>
-      </Reveal>
+      
 
       <Reveal className="page-section">
         <Card className="overflow-hidden rounded-[36px] border-[color:var(--panel-border)] bg-[linear-gradient(120deg,rgba(184,255,111,0.22),rgba(74,214,255,0.16)_38%,rgba(255,141,111,0.18)_100%)] p-0">
