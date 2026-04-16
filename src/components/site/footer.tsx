@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { IconBrandGithub, IconBrandInstagram, IconBrandLinkedin } from "@tabler/icons-react";
 
-import LaserFlow from "@/components/LaserFlow";
 import { profileIntro, socialLinks } from "@/lib/site";
 
 const socialIconMap = {
