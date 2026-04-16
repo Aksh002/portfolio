@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 import { SiteFooter } from "@/components/site/footer";
+import { SiteBackgroundStage } from "@/components/site/site-background-stage";
 import { SiteNav } from "@/components/site/nav";
 import { ThemeProvider } from "@/components/site/theme-provider";
 import { profileIntro, siteUrl } from "@/lib/site";
@@ -46,8 +47,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="grid-glow" suppressHydrationWarning>
+    <html lang="en" data-theme="dark">
+      <body suppressHydrationWarning>
         <Script
           id="theme-init"
           strategy="beforeInteractive"
@@ -55,8 +56,8 @@ export default function RootLayout({
             __html: `(() => {
               try {
                 const stored = localStorage.getItem('portfolio-theme');
-                const system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                document.documentElement.dataset.theme = stored === 'light' || stored === 'dark' ? stored : system;
+                document.documentElement.dataset.theme =
+                  stored === 'light' || stored === 'dark' ? stored : 'dark';
               } catch {
                 document.documentElement.dataset.theme = 'dark';
               }
@@ -70,7 +71,7 @@ export default function RootLayout({
         />
         <ThemeProvider>
           <div className="relative isolate overflow-x-clip">
-            <div className="theme-atmosphere pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] blur-3xl" />
+            <SiteBackgroundStage />
             <SiteNav />
             <main className="mx-auto w-full max-w-[1280px] px-4 pb-10 pt-10 md:px-6 md:pt-14">
               {children}
