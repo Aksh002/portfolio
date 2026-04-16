@@ -72,7 +72,7 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
   shader = "",
   center = ["x", "y"],
 }) => {
-  const uniforms = React.useMemo(() => {
+  const uniforms = React.useMemo<Uniforms>(() => {
     let colorsArray = [
       colors[0],
       colors[0],
@@ -108,19 +108,19 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
           color[1] / 255,
           color[2] / 255,
         ]),
-        type: "uniform3fv",
+        type: "uniform3fv" as const,
       },
       u_opacities: {
         value: opacities,
-        type: "uniform1fv",
+        type: "uniform1fv" as const,
       },
       u_total_size: {
         value: totalSize,
-        type: "uniform1f",
+        type: "uniform1f" as const,
       },
       u_dot_size: {
         value: dotSize,
-        type: "uniform1f",
+        type: "uniform1f" as const,
       },
     };
   }, [colors, opacities, totalSize, dotSize]);
@@ -312,11 +312,6 @@ const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
 };
 interface ShaderProps {
   source: string;
-  uniforms: {
-    [key: string]: {
-      value: number[] | number[][] | number;
-      type: string;
-    };
-  };
+  uniforms: Uniforms;
   maxFps?: number;
 }
