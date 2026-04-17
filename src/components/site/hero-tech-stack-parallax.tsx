@@ -224,7 +224,7 @@ export function HeroTechStackParallax() {
       <div className="relative bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-start)_38%,transparent),transparent_22%,color-mix(in_srgb,var(--page-base)_24%,transparent)_100%)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,color-mix(in_srgb,var(--accent-secondary)_8%,transparent),transparent_24%),radial-gradient(circle_at_28%_70%,color-mix(in_srgb,var(--accent)_8%,transparent),transparent_18%),radial-gradient(circle_at_76%_18%,color-mix(in_srgb,var(--accent-tertiary)_8%,transparent),transparent_16%)]" />
 
-        <div className="relative mx-auto flex min-h-[72vh] max-w-[1500px] items-center justify-center px-4 py-20 md:min-h-[88vh] md:px-8 lg:px-10">
+        <div className="relative mx-auto flex min-h-[58vh] max-w-[1500px] items-center justify-center px-4 py-12 sm:py-14 md:min-h-[72vh] md:px-8 md:py-18 lg:min-h-[88vh] lg:px-10 lg:py-20">
           <div className="pointer-events-none absolute inset-0 hidden md:block">
             {stackBadges.map((badge) => (
               <StackOrb
@@ -240,7 +240,7 @@ export function HeroTechStackParallax() {
             <p className="mb-5 text-[11px] uppercase tracking-[0.38em] text-[color:var(--text-faint)]">
               Stack in motion
             </p>
-            <h2 className="display text-[clamp(2.8rem,7vw,5.8rem)] font-semibold uppercase leading-[0.92] tracking-[-0.06em] text-[color:var(--text-strong)]">
+            <h2 className="display text-[clamp(2.15rem,11vw,5.8rem)] font-semibold uppercase leading-[0.92] tracking-[-0.06em] text-[color:var(--text-strong)]">
               Production tools,
               <span className="block text-[color:var(--text-soft)]">held in orbit.</span>
             </h2>
@@ -249,7 +249,7 @@ export function HeroTechStackParallax() {
               delivery, deployment workflows, and the infrastructure around them.
             </p>
 
-            <div className="mt-10 grid grid-cols-2 gap-3 md:hidden">
+            <div className="mt-8 grid grid-cols-2 gap-2.5 md:hidden">
               {stackBadges.map((badge) => {
                 const Icon = badge.icon;
 
@@ -264,14 +264,14 @@ export function HeroTechStackParallax() {
                       delay: badge.delay,
                     }}
                     className={cn(
-                      "flex items-center gap-3 rounded-[24px] border border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_88%,transparent),color-mix(in_srgb,var(--page-mid)_76%,transparent))] px-4 py-4 backdrop-blur-xl",
+                      "flex items-center gap-2.5 rounded-[22px] border border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_88%,transparent),color-mix(in_srgb,var(--page-mid)_76%,transparent))] px-3 py-3 backdrop-blur-xl",
                       badge.accentClassName,
                     )}
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:color-mix(in_srgb,var(--text-strong)_8%,transparent)]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[color:color-mix(in_srgb,var(--text-strong)_8%,transparent)]">
                       <Icon className="h-5 w-5" strokeWidth={1.8} />
                     </div>
-                    <span className="text-sm font-medium text-[color:var(--text-soft)]">
+                    <span className="text-[13px] font-medium text-[color:var(--text-soft)]">
                       {badge.name}
                     </span>
                   </motion.div>

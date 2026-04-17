@@ -251,21 +251,21 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
   return (
     <div className="space-y-0 md:space-y-0">
       <section className="page-section relative left-1/2 z-30 -mt-10 w-screen -translate-x-1/2 md:-mt-37 md:mb-0">
-        <div ref={sectionRef} className="min-h-[210vh]">
-          <div className="sticky top-0 h-screen overflow-visible bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-10">
+        <div ref={sectionRef} className="min-h-[170vh] lg:min-h-[210vh]">
+          <div className="sticky top-0 h-screen overflow-visible bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-16 sm:pt-18 lg:pt-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.12),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.06),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_24%)]" />
 
             <div
               ref={watermarkRef}
-              className="pointer-events-none absolute inset-x-0 bottom-[-6%] z-[1] px-4 text-[clamp(5rem,23vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)]"
+              className="pointer-events-none absolute inset-x-0 bottom-[-6%] z-[1] hidden px-4 text-[clamp(5rem,23vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)] sm:block"
             >
               <div>Akshit</div>
               <div className="-mt-4 ml-[12vw]">Gangwar</div>
             </div>
 
-            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-10 pt-8 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10">
-              <div ref={textRef} className="relative flex max-w-[640px] flex-col justify-between gap-6 lg:py-6">
-                <div className="space-y-6">
+            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-6 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10 lg:pb-10 lg:pt-8">
+              <div ref={textRef} className="relative flex max-w-[640px] flex-col justify-between gap-5 lg:py-6">
+                <div className="space-y-5">
                   <Badge className="w-fit rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--page-base)_55%,rgba(255,255,255,0.2)),color-mix(in_srgb,var(--accent-secondary)_10%,transparent)_100%)] px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--accent-secondary)_58%,var(--text-strong))] shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
                     HI! I AM
                   </Badge>
@@ -284,12 +284,12 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                       {profileIntro.longBio}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                     <Link
                       href="/projects"
                       className={cn(
                         buttonVariants({ variant: "outline", size: "lg" }),
-                        "group border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(140deg,color-mix(in_srgb,var(--page-base)_80%,transparent),color-mix(in_srgb,var(--text-strong)_4%,transparent))] text-[color:var(--text-strong)] shadow-[0_16px_34px_rgba(11,10,20,0.08)] hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_44%,transparent)] hover:bg-[linear-gradient(140deg,color-mix(in_srgb,var(--accent-secondary)_12%,transparent),color-mix(in_srgb,var(--page-base)_74%,transparent))]",
+                        "group w-full justify-center border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(140deg,color-mix(in_srgb,var(--page-base)_80%,transparent),color-mix(in_srgb,var(--text-strong)_4%,transparent))] text-[color:var(--text-strong)] shadow-[0_16px_34px_rgba(11,10,20,0.08)] hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_44%,transparent)] hover:bg-[linear-gradient(140deg,color-mix(in_srgb,var(--accent-secondary)_12%,transparent),color-mix(in_srgb,var(--page-base)_74%,transparent))] sm:w-auto",
                       )}
                     >
                       <span>Explore Projects</span>
@@ -297,7 +297,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                     </Link>
                     <Link
                       href="/resume"
-                      className="group inline-block h-14 min-w-[11.5rem] rounded-full shadow-[0_22px_48px_rgba(137,94,182,0.18)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f6d2ff]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                      className="group inline-block h-14 w-full min-w-[11.5rem] rounded-full shadow-[0_22px_48px_rgba(137,94,182,0.18)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f6d2ff]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:w-auto"
                     >
                       <GlassSurface
                         width="100%"
@@ -349,7 +349,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
             <div
               ref={keyboardRef}
-              className="pointer-events-none absolute left-[79%] top-[44%] z-30 w-[min(104vw,1320px)] -translate-x-1/2 -translate-y-1/2 select-none will-change-transform"
+              className="pointer-events-none absolute left-[79%] top-[44%] z-30 hidden w-[min(104vw,1320px)] -translate-x-1/2 -translate-y-1/2 select-none will-change-transform lg:block"
             >
               <div className="origin-center scale-[0.42] sm:scale-[0.5] md:scale-[0.64] lg:scale-[0.82] xl:scale-[0.96] 2xl:scale-[1.06]">
                 <Keyboard className="drop-shadow-[0_45px_90px_rgba(0,0,0,0.28)]" />

@@ -27,6 +27,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/lib/utils";
 
 type InterestTrack = {
   id: string;
@@ -217,6 +218,7 @@ const playlistCover =
 
 export function AboutInterestsPlayer() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isCompact, setIsCompact] = useState(false);
   const activeTrack = interestTracks[activeIndex];
   const ActiveIcon = activeTrack.icon;
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -229,9 +231,23 @@ export function AboutInterestsPlayer() {
     activeButton.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }, [activeIndex]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 1023px)");
+    const syncCompact = () => setIsCompact(mediaQuery.matches);
+
+    syncCompact();
+    mediaQuery.addEventListener("change", syncCompact);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncCompact);
+    };
+  }, []);
+
   useLayoutEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    if (!section || isCompact) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -252,7 +268,142 @@ export function AboutInterestsPlayer() {
     return () => {
       trigger.kill();
     };
-  }, []);
+  }, [isCompact]);
+
+  if (isCompact) {
+    return (
+      <section className="relative overflow-hidden rounded-[32px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_92%,#0d1118),color-mix(in_srgb,var(--page-mid)_84%,#0b1016)_48%,color-mix(in_srgb,var(--page-end)_76%,#090d14)_100%)] shadow-[0_22px_70px_color-mix(in_srgb,var(--text-strong)_12%,transparent)]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,color-mix(in_srgb,var(--accent-secondary)_16%,transparent),transparent_26%),radial-gradient(circle_at_84%_18%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_22%),linear-gradient(180deg,color-mix(in_srgb,var(--text-strong)_2%,transparent),transparent_30%,color-mix(in_srgb,var(--background)_8%,transparent)_100%)]" />
+        <div className="relative">
+          <div className="flex items-center justify-between border-b border-[color:color-mix(in_srgb,var(--text-strong)_8%,transparent)] px-4 py-4 sm:px-5">
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-[color:color-mix(in_srgb,var(--text-strong)_48%,transparent)]">
+              Interest player
+            </p>
+          </div>
+
+          <div className="space-y-5 p-4 sm:p-5">
+            <div className="grid gap-4 sm:grid-cols-[120px_minmax(0,1fr)] sm:items-end">
+              <div className="relative aspect-square overflow-hidden rounded-[20px] bg-[linear-gradient(160deg,color-mix(in_srgb,var(--page-base)_10%,transparent),color-mix(in_srgb,var(--page-base)_66%,rgba(0,0,0,0.36)))] shadow-[0_18px_40px_rgba(0,0,0,0.24)]">
+                <img
+                  src={playlistCover}
+                  alt="Interests playlist cover"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,7,14,0.02),rgba(7,10,16,0.58)_100%)]" />
+                <span className="absolute left-3 top-3 text-[10px] uppercase tracking-[0.28em] text-white/80">
+                  Album
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-[11px] uppercase tracking-[0.32em] text-[color:color-mix(in_srgb,var(--text-strong)_48%,transparent)]">
+                  Curated by Akshit
+                </p>
+                <h2 className="display max-w-[9ch] text-[clamp(2.5rem,12vw,4.8rem)] font-semibold leading-[0.92] tracking-[-0.08em] text-[color:var(--text-strong)]">
+                  Interests.
+                </h2>
+                <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_70%,transparent)]">
+                  Pick a track and the right panel becomes the currently playing interest.
+                </p>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[24px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_8%,rgba(255,255,255,0.12))]">
+              <div className="relative overflow-hidden">
+                <img
+                  src={activeTrack.image}
+                  alt={activeTrack.title}
+                  className="aspect-[1.35] w-full object-cover"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${activeTrack.palette} opacity-22 mix-blend-screen`} />
+              </div>
+              <div className="space-y-4 px-4 py-4">
+                <div className="flex items-center gap-3">
+                  <span className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${activeTrack.palette} text-[#081018] shadow-[0_12px_26px_rgba(0,0,0,0.2)]`}>
+                    <ActiveIcon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase tracking-[0.28em] text-[color:color-mix(in_srgb,var(--text-strong)_44%,transparent)]">
+                      Now playing
+                    </p>
+                    <p className="truncate text-xl font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                      {activeTrack.title}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_72%,transparent)]">
+                  {activeTrack.description}
+                </p>
+                <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.2em] text-[color:color-mix(in_srgb,var(--text-strong)_48%,transparent)]">
+                  <span>{activeTrack.subtitle}</span>
+                  <span>•</span>
+                  <span>{activeTrack.tempo}</span>
+                  <span>•</span>
+                  <span>{activeTrack.length}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-[color:color-mix(in_srgb,var(--text-strong)_44%,transparent)]">
+                  Playlist
+                </p>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-[color:color-mix(in_srgb,var(--text-strong)_38%,transparent)]">
+                  {interestTracks.length} tracks
+                </p>
+              </div>
+              <div className="space-y-2">
+                {interestTracks.map((track, index) => {
+                  const Icon = track.icon;
+                  const isActive = activeIndex === index;
+
+                  return (
+                    <button
+                      key={track.id}
+                      type="button"
+                      onClick={() => setActiveIndex(index)}
+                      className={cn(
+                        "grid w-full grid-cols-[40px_1fr_auto] items-center gap-3 rounded-[20px] border px-3 py-3 text-left transition duration-300",
+                        isActive
+                          ? "border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--text-strong)_12%,transparent),color-mix(in_srgb,var(--text-strong)_6%,transparent))]"
+                          : "border-[color:color-mix(in_srgb,var(--text-strong)_8%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_6%,rgba(255,255,255,0.08))]",
+                      )}
+                    >
+                      <span className="text-sm text-[color:color-mix(in_srgb,var(--text-strong)_44%,transparent)]">
+                        {index + 1}
+                      </span>
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${track.palette} text-[#081018] shadow-[0_10px_24px_rgba(0,0,0,0.18)]`}>
+                          <Icon className="h-4.5 w-4.5" />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-medium text-[color:var(--text-strong)]">
+                            {track.title}
+                          </p>
+                          <p className="truncate text-xs text-[color:color-mix(in_srgb,var(--text-strong)_46%,transparent)]">
+                            {track.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[11px] uppercase tracking-[0.18em] text-[color:color-mix(in_srgb,var(--text-strong)_44%,transparent)]">
+                        {track.length}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <div

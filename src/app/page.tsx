@@ -5,12 +5,9 @@ import { AboutMeSurface } from "@/components/site/about-me-surface";
 import { LandingHeroShowcase } from "@/components/site/landing-hero-showcase";
 import { PageShell } from "@/components/site/page-shell";
 import { Reveal } from "@/components/site/reveal";
-import { SectionHeading } from "@/components/site/section-heading";
-import { WorldCard } from "@/components/site/world-card";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getFeaturedProjects } from "@/lib/content";
-import { interestWorlds } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export default async function HomePage() {
