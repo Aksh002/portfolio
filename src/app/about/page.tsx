@@ -20,12 +20,12 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageShell className="space-y-20">
+    <PageShell className="space-y-14 md:space-y-20">
       <Reveal>
-        <section className="relative overflow-hidden rounded-[42px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--page-base)_84%,rgba(7,10,18,0.96)),color-mix(in_srgb,var(--page-mid)_76%,rgba(10,11,20,0.92))_42%,color-mix(in_srgb,var(--page-end)_66%,rgba(16,12,28,0.88))_100%)] px-6 py-7 shadow-[0_24px_70px_color-mix(in_srgb,var(--text-strong)_12%,transparent)] md:px-8 md:py-9 lg:px-10 lg:py-10">
+        <section className="relative overflow-hidden rounded-[34px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--page-base)_84%,rgba(7,10,18,0.96)),color-mix(in_srgb,var(--page-mid)_76%,rgba(10,11,20,0.92))_42%,color-mix(in_srgb,var(--page-end)_66%,rgba(16,12,28,0.88))_100%)] px-4 py-5 shadow-[0_24px_70px_color-mix(in_srgb,var(--text-strong)_12%,transparent)] md:rounded-[42px] md:px-8 md:py-9 lg:px-10 lg:py-10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,color-mix(in_srgb,var(--accent-secondary)_14%,transparent),transparent_26%),radial-gradient(circle_at_82%_20%,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_24%),linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_8%,transparent),transparent_34%,color-mix(in_srgb,var(--page-base)_28%,transparent)_100%)]" />
           <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(300px,0.92fr)] lg:items-center">
-            <div className="space-y-7">
+            <div className="space-y-5 md:space-y-7">
               <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_58%,transparent)]">
                 <span>Profile / About</span>
                 <span className="h-px w-10 bg-[color:color-mix(in_srgb,var(--text-strong)_16%,transparent)]" />
@@ -36,10 +36,10 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-4">
-                <h1 className="display max-w-[11ch] text-[clamp(3rem,6vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.065em] text-[color:var(--text-strong)]">
+                <h1 className="display max-w-[11ch] text-[clamp(2.4rem,10vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.065em] text-[color:var(--text-strong)]">
                   The engineer behind the atmosphere.
                 </h1>
-                <p className="max-w-[44rem] text-[1.02rem] leading-8 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem]">
+                <p className="max-w-[44rem] text-[15px] leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem] md:leading-8">
                   {profileIntro.longBio}
                 </p>
                 <p className="max-w-[42rem] text-[15px] leading-8 text-[color:color-mix(in_srgb,var(--text-strong)_66%,transparent)]">
@@ -71,7 +71,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 xl:grid-cols-2 xl:grid-rows-2 xl:items-stretch">
+          <div className="grid gap-4 xl:grid-cols-2 xl:grid-rows-2 xl:items-stretch">
             {skillGroups.map((group, index) => {
             const palettes: number[][][] = [
               [[184, 255, 111], [249, 255, 223]],
@@ -89,7 +89,7 @@ export default function AboutPage() {
             return (
               <section
                 key={group.category}
-                className="group relative min-h-[28rem] overflow-hidden rounded-[30px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_88%,rgba(255,255,255,0.58)),color-mix(in_srgb,var(--page-mid)_78%,rgba(255,255,255,0.24)))] p-5 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md"
+                className="group relative min-h-[24rem] overflow-hidden rounded-[26px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_88%,rgba(255,255,255,0.58)),color-mix(in_srgb,var(--page-mid)_78%,rgba(255,255,255,0.24)))] p-4 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md md:min-h-[28rem] md:rounded-[30px] md:p-5"
               >
                 <div className="absolute inset-0">
                   <CanvasRevealEffect
@@ -106,21 +106,21 @@ export default function AboutPage() {
                     <p className="text-[10px] uppercase tracking-[0.28em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
                       {group.category}
                     </p>
-                    <h3 className="text-[1.85rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                    <h3 className="text-[1.5rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)] md:text-[1.85rem]">
                       {group.category}
                     </h3>
                   </div>
 
-                  <div className="mt-6 space-y-4">
+                  <div className="mt-5 space-y-3">
                     {group.items.map((item) => (
                       <div
                         key={item.name}
-                        className="rounded-[20px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--page-base)_78%,rgba(255,255,255,0.34))] px-4 py-4 backdrop-blur-sm"
+                        className="rounded-[18px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--page-base)_78%,rgba(255,255,255,0.34))] px-3.5 py-3.5 backdrop-blur-sm md:rounded-[20px] md:px-4 md:py-4"
                       >
                         <p className={`text-sm font-medium ${accentClasses[index]}`}>
                           {item.name}
                         </p>
-                        <p className="mt-2 text-sm leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_78%,transparent)]">
+                        <p className="mt-2 text-[13px] leading-6 text-[color:color-mix(in_srgb,var(--text-strong)_78%,transparent)] md:text-sm md:leading-7">
                           {item.context}
                         </p>
                       </div>
@@ -155,7 +155,7 @@ export default function AboutPage() {
           {experienceItems.map((item) => (
             <section
               key={`${item.company}-${item.role}`}
-              className="relative overflow-hidden rounded-[32px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.28)),color-mix(in_srgb,var(--background)_2%,rgba(255,255,255,0.08)))] p-6 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md"
+              className="relative overflow-hidden rounded-[26px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.28)),color-mix(in_srgb,var(--background)_2%,rgba(255,255,255,0.08)))] p-4 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md md:rounded-[32px] md:p-6"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_28%),radial-gradient(circle_at_80%_24%,color-mix(in_srgb,var(--accent-secondary)_10%,transparent),transparent_30%)]" />
               <div className="relative grid gap-6 md:grid-cols-[0.72fr_1.28fr]">
@@ -163,13 +163,13 @@ export default function AboutPage() {
                 <p className="text-[11px] uppercase tracking-[0.3em] text-[color:var(--accent)]">
                   {item.period}
                 </p>
-                <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                <h3 className="text-[1.35rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)] md:text-2xl">
                   {item.role}
                 </h3>
-                <p className="text-sm text-[color:color-mix(in_srgb,var(--text-strong)_70%,transparent)]">{item.company}</p>
+                <p className="text-[13px] text-[color:color-mix(in_srgb,var(--text-strong)_70%,transparent)] md:text-sm">{item.company}</p>
               </div>
               <div className="space-y-5">
-                <ul className="space-y-3 text-sm leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_76%,transparent)]">
+                <ul className="space-y-2.5 text-[13px] leading-6 text-[color:color-mix(in_srgb,var(--text-strong)_76%,transparent)] md:text-sm md:leading-7">
                   {item.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
                   ))}
@@ -178,7 +178,7 @@ export default function AboutPage() {
                   {item.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_4%,rgba(255,255,255,0.1))] px-3 py-1.5 text-xs text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)]"
+                      className="rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_4%,rgba(255,255,255,0.1))] px-3 py-1.5 text-[11px] text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-xs"
                     >
                       {tech}
                     </span>
@@ -189,7 +189,7 @@ export default function AboutPage() {
                     href="https://falak.mitblr.in"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.12))] px-4 py-2 text-sm text-[color:color-mix(in_srgb,var(--text-strong)_82%,transparent)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_26%,transparent)] hover:text-[color:var(--text-strong)]"
+                    className="inline-flex items-center gap-2 rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.12))] px-3.5 py-1.5 text-[13px] text-[color:color-mix(in_srgb,var(--text-strong)_82%,transparent)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_26%,transparent)] hover:text-[color:var(--text-strong)] md:px-4 md:py-2 md:text-sm"
                   >
                     <Globe className="h-4 w-4" />
                     Falak website
@@ -198,7 +198,7 @@ export default function AboutPage() {
                     href="https://github.com/Aksh002"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.12))] px-4 py-2 text-sm text-[color:color-mix(in_srgb,var(--text-strong)_82%,transparent)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_26%,transparent)] hover:text-[color:var(--text-strong)]"
+                    className="inline-flex items-center gap-2 rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.12))] px-3.5 py-1.5 text-[13px] text-[color:color-mix(in_srgb,var(--text-strong)_82%,transparent)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_26%,transparent)] hover:text-[color:var(--text-strong)] md:px-4 md:py-2 md:text-sm"
                   >
                     <ArrowUpRight className="h-4 w-4" />
                     GitHub

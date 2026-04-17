@@ -85,13 +85,13 @@ export default async function ProjectsPage() {
   const projects = await getAllProjects();
 
   return (
-    <PageShell className="space-y-10 md:space-y-14">
-      <section className="page-section grid gap-6 border-b border-[color:var(--panel-border)] pb-8 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:pb-12">
+    <PageShell className="space-y-8 md:space-y-14">
+      <section className="page-section grid gap-5 border-b border-[color:var(--panel-border)] pb-6 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:pb-12">
         <div className="space-y-4 lg:sticky lg:top-28 lg:self-start">
           <p className="font-mono text-[11px] uppercase tracking-[0.34em] text-[var(--accent-secondary)]">
             Projects / editorial split
           </p>
-          <h1 className="max-w-4xl text-3xl font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-5xl">
+          <h1 className="max-w-4xl text-[2rem] font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-5xl">
             PROJECTS :-
           </h1>
         </div>
@@ -112,7 +112,7 @@ export default async function ProjectsPage() {
             <article
               key={project.slug}
               data-project-case
-              className="grid gap-7 border-t border-[color:var(--panel-border)] py-8 md:gap-10 md:py-10 lg:min-h-[85vh] lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:gap-14"
+              className="grid gap-5 border-t border-[color:var(--panel-border)] py-6 md:gap-10 md:py-10 lg:min-h-[85vh] lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:gap-14"
               style={{ "--project-focus": 0.14 } as CSSProperties}
             >
               <div data-project-left className="lg:sticky lg:top-28 lg:h-fit lg:self-start">
@@ -151,10 +151,10 @@ export default async function ProjectsPage() {
                       >
                         {project.roles.join(" / ")}
                       </p>
-                      <h2 className="max-w-sm text-3xl font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-5xl">
+                      <h2 className="max-w-sm text-[2rem] font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-5xl">
                         {project.title}
                       </h2>
-                      <p className="max-w-md text-sm leading-7 text-[color:var(--text-muted)] md:text-base">
+                      <p className="max-w-md text-[13px] leading-6 text-[color:var(--text-muted)] md:text-base md:leading-7">
                         {project.impact}
                       </p>
                     </div>
@@ -178,7 +178,7 @@ export default async function ProjectsPage() {
                       <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-[color:var(--text-faint)]">
                         Overview
                       </p>
-                      <p className="max-w-3xl text-base leading-8 text-[color:var(--text-muted)] md:text-lg">
+                      <p className="max-w-3xl text-[14px] leading-6.5 text-[color:var(--text-muted)] md:text-lg md:leading-8">
                         {project.summary}
                       </p>
                     </div>
@@ -196,7 +196,7 @@ export default async function ProjectsPage() {
                             href={link.href}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--panel-border)] bg-[color:rgba(255,255,255,0.03)] px-3.5 py-2 text-sm text-[color:var(--text-strong)] transition duration-300 hover:border-[color:var(--accent-secondary)] hover:bg-[color:rgba(74,214,255,0.08)]"
+                            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--panel-border)] bg-[color:rgba(255,255,255,0.03)] px-3 py-1.5 text-xs text-[color:var(--text-strong)] transition duration-300 hover:border-[color:var(--accent-secondary)] hover:bg-[color:rgba(74,214,255,0.08)] md:px-3.5 md:py-2 md:text-sm"
                           >
                             {isGithubLink ? (
                               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[color:rgba(255,255,255,0.08)]">
@@ -231,7 +231,7 @@ export default async function ProjectsPage() {
                       {project.stack.map((item) => (
                         <span
                           key={item}
-                          className="inline-flex w-fit items-center rounded-full border border-[color:var(--panel-border)] bg-[color:rgba(255,255,255,0.04)] px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[color:var(--text-soft)] transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--accent-secondary)] hover:bg-[color:rgba(74,214,255,0.09)] hover:text-[color:var(--text-strong)]"
+                          className="inline-flex w-fit items-center rounded-full border border-[color:var(--panel-border)] bg-[color:rgba(255,255,255,0.04)] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--text-soft)] transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--accent-secondary)] hover:bg-[color:rgba(74,214,255,0.09)] hover:text-[color:var(--text-strong)] md:px-3.5 md:py-2 md:text-[11px]"
                         >
                           {item}
                         </span>

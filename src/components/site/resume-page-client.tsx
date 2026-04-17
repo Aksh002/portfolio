@@ -295,18 +295,18 @@ function ResumeSection({
   return (
     <section
       id={id}
-      className="scroll-mt-28 border-t border-[color:var(--resume-line)] px-6 py-8 md:px-10 md:py-10"
+      className="scroll-mt-28 border-t border-[color:var(--resume-line)] px-4 py-6 md:px-10 md:py-10"
       style={{
         ...visualState,
         transition: "opacity 320ms ease, filter 320ms ease",
       }}
     >
-      <div className="grid gap-8 xl:grid-cols-[180px_minmax(0,1fr)]">
+      <div className="grid gap-6 xl:grid-cols-[180px_minmax(0,1fr)]">
         <div className="space-y-3">
           <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-[var(--accent-tertiary)]">
             {eyebrow}
           </p>
-          <h2 className="text-2xl font-semibold tracking-[-0.05em] text-[color:var(--text-strong)] md:text-3xl">
+          <h2 className="text-xl font-semibold tracking-[-0.05em] text-[color:var(--text-strong)] md:text-3xl">
             {title}
           </h2>
         </div>
@@ -421,7 +421,7 @@ export function ResumePageClient({
 
   return (
     <section className="space-y-8 pb-8 xl:pl-[11.5rem]">
-      <div className="print-hidden flex flex-wrap items-end justify-between gap-6">
+      <div className="print-hidden flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-3">
           <p className="font-mono text-[11px] uppercase tracking-[0.34em] text-[var(--accent-secondary)]">
             Digital Resume 
@@ -557,23 +557,23 @@ export function ResumePageClient({
           <div className="relative z-50">
             <section
               id="profile"
-              className="scroll-mt-28 px-6 py-8 md:px-10 md:py-10"
+              className="scroll-mt-28 px-4 py-6 md:px-10 md:py-10"
               style={{
                 ...getSectionVisualState(contentEmphasis.profile),
                 transition: "opacity 320ms ease, filter 320ms ease",
               }}
             >
-              <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_320px]">
-                <div className="space-y-6">
+              <div className="grid gap-7 xl:grid-cols-[minmax(0,1fr)_320px]">
+                <div className="space-y-5">
                   <div className="space-y-3">
                     <p className="font-mono text-[11px] uppercase tracking-[0.34em] text-[var(--accent)]">
                       {profileIntro.title}
                     </p>
-                    <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-6xl">
+                    <h2 className="max-w-3xl text-[2.15rem] font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-6xl">
                       {profileIntro.name}
                     </h2>
                   </div>
-                  <p className="max-w-3xl text-base leading-8 text-[color:var(--text-muted)] md:text-lg">
+                  <p className="max-w-3xl text-[14px] leading-6 text-[color:var(--text-muted)] md:text-lg md:leading-8">
                     {profileIntro.professionalSummary}
                   </p>
                   <ResumeChipRack>
@@ -589,14 +589,14 @@ export function ResumePageClient({
                   </ResumeChipRack>
                 </div>
 
-                <div className="space-y-4 rounded-[32px] border border-[color:var(--resume-line)] bg-[linear-gradient(180deg,var(--resume-panel-top),var(--resume-panel-bottom))] p-6">
+                <div className="space-y-4 rounded-[28px] border border-[color:var(--resume-line)] bg-[linear-gradient(180deg,var(--resume-panel-top),var(--resume-panel-bottom))] p-4 md:rounded-[32px] md:p-6">
                   <div className="space-y-2">
                     <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--accent-secondary)]">
                       Contact
                     </p>
-                    <p className="text-sm leading-7 text-[color:var(--text-muted)]">{profileIntro.location}</p>
-                    <p className="text-sm leading-7 text-[color:var(--text-muted)]">{profileIntro.phone}</p>
-                    <p className="text-sm leading-7 text-[color:var(--text-muted)]">{profileIntro.email}</p>
+                    <p className="text-[13px] leading-6 text-[color:var(--text-muted)] md:text-sm md:leading-7">{profileIntro.location}</p>
+                    <p className="text-[13px] leading-6 text-[color:var(--text-muted)] md:text-sm md:leading-7">{profileIntro.phone}</p>
+                    <p className="text-[13px] leading-6 text-[color:var(--text-muted)] md:text-sm md:leading-7">{profileIntro.email}</p>
                   </div>
                   <div className="h-px bg-[color:var(--resume-line)]" />
                   <div className="space-y-2">
@@ -607,7 +607,7 @@ export function ResumePageClient({
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="flex items-center justify-between gap-3 text-sm text-[color:var(--text-soft)] transition hover:text-[color:var(--text-strong)]"
+                        className="flex items-center justify-between gap-3 text-[13px] text-[color:var(--text-soft)] transition hover:text-[color:var(--text-strong)] md:text-sm"
                       >
                         <span>{link.label}</span>
                         <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--text-faint)]">
@@ -617,7 +617,7 @@ export function ResumePageClient({
                     ))}
                   </div>
                   <div className="h-px bg-[color:var(--resume-line)]" />
-                  <p className="text-sm leading-7 text-[color:var(--text-soft)]">{profileIntro.availability}</p>
+                  <p className="text-[13px] leading-6 text-[color:var(--text-soft)] md:text-sm md:leading-7">{profileIntro.availability}</p>
                 </div>
               </div>
             </section>
@@ -632,7 +632,7 @@ export function ResumePageClient({
                 {resumeStats.map((item, index) => (
                   <div
                     key={item.label}
-                    className="rounded-[28px] border border-[color:var(--resume-line)] bg-[linear-gradient(180deg,var(--resume-panel-top),var(--resume-panel-bottom))] p-5"
+                    className="rounded-[24px] border border-[color:var(--resume-line)] bg-[linear-gradient(180deg,var(--resume-panel-top),var(--resume-panel-bottom))] p-4 md:rounded-[28px] md:p-5"
                   >
                     <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--accent-tertiary)]">
                       {String(index + 1).padStart(2, "0")}
@@ -658,14 +658,14 @@ export function ResumePageClient({
                 {experienceItems.map((item) => (
                   <article
                     key={`${item.company}-${item.role}`}
-                    className="relative space-y-5 border-t border-[color:var(--resume-line)] pt-6 first:border-t-0 first:pt-0"
+                    className="relative space-y-4 border-t border-[color:var(--resume-line)] pt-5 first:border-t-0 first:pt-0"
                   >
                     <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                       <div className="space-y-2">
                         <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--text-faint)]">
                           {item.company}
                         </p>
-                        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                        <h3 className="text-[1.35rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)] md:text-2xl">
                           {item.role}
                         </h3>
                       </div>
@@ -674,7 +674,7 @@ export function ResumePageClient({
                       </p>
                     </div>
 
-                    <ul className="space-y-3 text-sm leading-7 text-[color:var(--text-soft)] md:text-base">
+                    <ul className="space-y-2.5 text-[13px] leading-6 text-[color:var(--text-soft)] md:text-base md:leading-7">
                       {item.highlights.map((highlight) => (
                         <li key={highlight} className="relative pl-5 before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[var(--accent-tertiary)]">
                           {highlight}
@@ -713,9 +713,9 @@ export function ResumePageClient({
                 {projects.map((project, index) => (
                   <article
                     key={project.slug}
-                    className="grid gap-5 border-t border-[color:var(--resume-line)] pt-6 first:border-t-0 first:pt-0 lg:grid-cols-[72px_minmax(0,1fr)]"
+                    className="grid gap-4 border-t border-[color:var(--resume-line)] pt-5 first:border-t-0 first:pt-0 lg:grid-cols-[72px_minmax(0,1fr)]"
                   >
-                    <div className="font-mono text-5xl font-semibold tracking-[-0.08em] text-[var(--resume-count)]">
+                    <div className="font-mono text-4xl font-semibold tracking-[-0.08em] text-[var(--resume-count)] md:text-5xl">
                       {String(index + 1).padStart(2, "0")}
                     </div>
                     <div className="space-y-4">
@@ -724,13 +724,13 @@ export function ResumePageClient({
                           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--text-faint)]">
                             {project.roles.join(" / ")}
                           </p>
-                          <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                          <h3 className="text-[1.35rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)] md:text-2xl">
                             {project.title}
                           </h3>
                         </div>
-                        <p className="max-w-sm text-sm leading-7 text-[color:var(--text-soft)]">{project.impact}</p>
+                        <p className="max-w-sm text-[13px] leading-6 text-[color:var(--text-soft)] md:text-sm md:leading-7">{project.impact}</p>
                       </div>
-                      <p className="max-w-3xl text-sm leading-7 text-[color:var(--text-muted)] md:text-base">
+                      <p className="max-w-3xl text-[13px] leading-6 text-[color:var(--text-muted)] md:text-base md:leading-7">
                         {project.summary}
                       </p>
                       <ResumeChipRack>
@@ -753,7 +753,7 @@ export function ResumePageClient({
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                  "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm transition duration-300",
+                                  "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition duration-300 md:px-3.5 md:py-2 md:text-sm",
                                   isGithubLink
                                     ? "border-[color:rgba(255,255,255,0.08)] bg-[color:rgba(255,255,255,0.03)] text-[color:var(--text-strong)] hover:border-[color:var(--accent-secondary)] hover:bg-[color:rgba(74,214,255,0.08)]"
                                     : "border-transparent text-[var(--accent-secondary)] hover:text-[color:var(--text-strong)]",
@@ -788,7 +788,7 @@ export function ResumePageClient({
                 {skillGroups.map((group) => (
                   <article
                     key={group.category}
-                    className="grid gap-4 border-t border-[color:var(--resume-line)] pt-5 first:border-t-0 first:pt-0 lg:grid-cols-[200px_minmax(0,1fr)]"
+                    className="grid gap-3 border-t border-[color:var(--resume-line)] pt-4 first:border-t-0 first:pt-0 lg:grid-cols-[200px_minmax(0,1fr)]"
                   >
                     <div>
                       <h3 className="text-lg font-semibold tracking-[-0.03em] text-[color:var(--text-strong)]">
@@ -805,7 +805,7 @@ export function ResumePageClient({
                       </ResumeChipRack>
                       <div className="grid gap-3">
                         {group.items.map((item) => (
-                          <p key={`${group.category}-${item.name}`} className="text-sm leading-7 text-[color:var(--text-soft)]">
+                          <p key={`${group.category}-${item.name}`} className="text-[13px] leading-6 text-[color:var(--text-soft)] md:text-sm md:leading-7">
                             <span className="text-[color:var(--text-strong)]">{item.name}</span>
                             {` / ${item.context}`}
                           </p>
@@ -827,14 +827,14 @@ export function ResumePageClient({
                 {educationItems.map((item) => (
                   <article
                     key={item.institution}
-                    className="space-y-4 border-t border-[color:var(--resume-line)] pt-5 first:border-t-0 first:pt-0"
+                    className="space-y-3 border-t border-[color:var(--resume-line)] pt-4 first:border-t-0 first:pt-0"
                   >
                     <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                       <div className="space-y-2">
                         <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--text-faint)]">
                           {item.institution}
                         </p>
-                        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[color:var(--text-strong)]">
+                        <h3 className="text-[1.35rem] font-semibold tracking-[-0.04em] text-[color:var(--text-strong)] md:text-2xl">
                           {item.credential}
                         </h3>
                       </div>
@@ -842,7 +842,7 @@ export function ResumePageClient({
                         {item.period}
                       </p>
                     </div>
-                    <ul className="space-y-3 text-sm leading-7 text-[color:var(--text-soft)] md:text-base">
+                    <ul className="space-y-2.5 text-[13px] leading-6 text-[color:var(--text-soft)] md:text-base md:leading-7">
                       {item.notes.map((note) => (
                         <li key={note} className="relative pl-5 before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[var(--accent)]">
                           {note}

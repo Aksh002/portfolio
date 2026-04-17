@@ -92,7 +92,7 @@ export function SiteNav() {
         mixBlendMode="screen"
         className="overflow-visible border border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(135deg,rgba(6,9,16,0.54),rgba(10,13,24,0.72)_38%,rgba(16,18,30,0.58)_100%)] shadow-[0_18px_48px_rgba(0,0,0,0.22)]"
       >
-        <div className="relative grid w-full items-center gap-3 overflow-visible px-2 md:grid-cols-[1fr_auto_1fr] md:gap-4">
+        <div className="relative hidden w-full items-center gap-3 overflow-visible px-2 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4">
           <div className="hidden md:flex md:items-center">
             <span className="pl-3 text-xs font-medium uppercase tracking-[0.34em] text-[color:var(--text-soft)]">
               PORTFOLIO&apos;26
@@ -114,6 +114,17 @@ export function SiteNav() {
           <div className="flex items-center justify-end md:justify-self-end">
             <ThemeToggle />
           </div>
+        </div>
+        <div className="relative flex w-full items-center justify-between px-2 md:hidden">
+          <FloatingDock
+            items={dockItems}
+            activeHref={pathname}
+            mobileClassName="shrink-0"
+          />
+          <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-[10px] font-medium uppercase tracking-[0.34em] text-[color:var(--text-soft)]">
+            PORTFOLIO&apos;26
+          </span>
+          <ThemeToggle size="compact" />
         </div>
       </GlassSurface>
     </header>

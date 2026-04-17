@@ -251,8 +251,8 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
   return (
     <div className="space-y-0 md:space-y-0">
       <section className="page-section relative left-1/2 z-30 -mt-10 w-screen -translate-x-1/2 md:-mt-37 md:mb-0">
-        <div ref={sectionRef} className="min-h-[170vh] lg:min-h-[210vh]">
-          <div className="sticky top-0 h-screen overflow-visible bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-16 sm:pt-18 lg:pt-10">
+        <div ref={sectionRef} className="min-h-[148vh] lg:min-h-[210vh]">
+          <div className="sticky top-0 min-h-screen overflow-visible bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-14 sm:pt-18 lg:h-screen lg:pt-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.12),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.06),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_24%)]" />
 
             <div
@@ -263,23 +263,23 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
               <div className="-mt-4 ml-[12vw]">Gangwar</div>
             </div>
 
-            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-6 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10 lg:pb-10 lg:pt-8">
-              <div ref={textRef} className="relative flex max-w-[640px] flex-col justify-between gap-5 lg:py-6">
-                <div className="space-y-5">
+            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 -pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10 lg:pb-10 lg:pt-8">
+              <div ref={textRef} className="relative flex max-w-[640px] flex-col justify-between gap-4 lg:py-6">
+                <div className="space-y-4">
                   <Badge className="w-fit rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--page-base)_55%,rgba(255,255,255,0.2)),color-mix(in_srgb,var(--accent-secondary)_10%,transparent)_100%)] px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--accent-secondary)_58%,var(--text-strong))] shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
                     HI! I AM
                   </Badge>
                   <div className="space-y-4">
-                    <h1 className="display text-[clamp(3.2rem,9vw,7.8rem)] font-semibold uppercase leading-[0.9] tracking-[-0.07em] text-[color:var(--text-strong)]">
+                    <h1 className="display text-[clamp(2.65rem,15vw,7.8rem)] font-semibold uppercase leading-[0.9] tracking-[-0.07em] text-[color:var(--text-strong)]">
                       <span className="block">Akshit</span>
                       <span className="block text-[color:var(--text-soft)]">Gangwar</span>
                     </h1>
-                    <p className="max-w-md text-base leading-8 text-[color:var(--text-soft)] md:text-lg">
+                    <p className="max-w-md text-[15px] leading-7 text-[color:var(--text-soft)] md:text-lg">
                       {profileIntro.title}
                     </p>
                     <p
                       ref={bioRef}
-                      className="max-w-xl min-h-[7rem] text-sm leading-7 text-[color:var(--text-faint)] md:min-h-[8.5rem] md:text-base"
+                      className="max-w-xl min-h-[5.5rem] text-[13px] leading-6 text-[color:var(--text-faint)] md:min-h-[8.5rem] md:text-base md:leading-7"
                     >
                       {profileIntro.longBio}
                     </p>
@@ -323,16 +323,19 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   </div>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {topHighlights.map((item) => (
+                <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
+                  {topHighlights.map((item, index) => (
                     <div
                       key={item.label}
-                      className="rounded-[24px] border border-[color:var(--panel-border)] bg-[color:var(--hero-panel-bg)] px-4 py-4 backdrop-blur-md"
+                      className={cn(
+                        "rounded-[20px] border border-[color:var(--panel-border)] bg-[color:var(--hero-panel-bg)] px-3.5 py-3.5 backdrop-blur-md sm:rounded-[24px] sm:px-4 sm:py-4",
+                        index === topHighlights.length - 1 && "col-span-2 sm:col-span-1",
+                      )}
                     >
                       <p className="text-[10px] uppercase tracking-[0.3em] text-[color:var(--text-faint)]">
                         {item.label}
                       </p>
-                      <p className="mt-2 text-sm leading-6 text-[color:var(--text-soft)]">
+                      <p className="mt-2 text-[13px] leading-5.5 text-[color:var(--text-soft)] sm:text-sm sm:leading-6">
                         {item.value}
                       </p>
                     </div>
@@ -380,7 +383,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
             </div>
 
             <div className="grid gap-10 xl:grid-cols-[minmax(0,1.14fr)_minmax(360px,0.86fr)] xl:items-start">
-              <div className="xl:sticky xl:top-24">
+              <div className="flex flex-col items-center xl:sticky xl:top-24 xl:block">
                 <MacbookScroll
                   badge={<InitialBadge />}
                   hideTitle
@@ -388,7 +391,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   screenHref="https://falak.mitblr.in"
                   src={falakHomepagePreview.src}
                   title={macbookTitle}
-                  className="min-h-[auto] scale-[0.28] py-0 sm:scale-[0.38] md:scale-[0.5] lg:scale-[0.62] xl:scale-[0.72] 2xl:scale-[0.82]"
+                  className="min-h-[80vh] scale-[0.21] py-0 sm:min-h-[96vh] sm:scale-[0.31] md:min-h-[118vh] md:scale-[0.46] lg:min-h-[135vh] lg:scale-[0.62] xl:min-h-[auto] xl:scale-[0.72] 2xl:scale-[0.82]"
                   backPanelClassName="h-[18rem] w-[52rem]"
                   frontPanelClassName="h-[30rem] w-[52rem]"
                   baseClassName="h-[35.75rem] w-[52rem]"
@@ -397,7 +400,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   rotateRange={[-28, 0]}
                   imageClassName="p-1.5"
                 />
-                <div className="-mt-8 flex justify-center xl:mt-2">
+                <div className="-mt-18 flex justify-center sm:-mt-14 md:-mt-10 lg:-mt-6 xl:mt-2">
                   <a
                     href="https://falak.mitblr.in"
                     target="_blank"
@@ -455,14 +458,15 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
               </div>
             </div>
 
-            <div className="mt-10 grid xl:hidden">
+            <div className="mt-8 grid gap-0 overflow-hidden rounded-[26px] border border-[color:color-mix(in_srgb,var(--panel-border)_92%,transparent)] xl:hidden sm:grid-cols-2">
               {falakStoryCards.map((card, index) => (
                 <div
                   key={card.title}
                   className={cn(
-                    "relative px-5 py-6",
-                    index > 0 &&
-                      "border-t border-[color:color-mix(in_srgb,var(--panel-border)_92%,transparent)]",
+                    "relative px-4 py-4 sm:px-5 sm:py-5",
+                    index > 0 && "border-t border-[color:color-mix(in_srgb,var(--panel-border)_92%,transparent)]",
+                    index % 2 === 1 && "sm:border-l sm:border-t-0",
+                    index >= 2 && "sm:border-t",
                     index % 2 === 0
                       ? "bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_82%,transparent),color-mix(in_srgb,var(--accent-secondary)_6%,transparent))]"
                       : "bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--accent-tertiary)_7%,transparent))]",
@@ -471,10 +475,10 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   <p className="text-[11px] uppercase tracking-[0.3em] text-[color:var(--text-faint)]">
                     {card.label}
                   </p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight text-[color:var(--text-strong)]">
+                  <h3 className="mt-3 text-lg font-semibold leading-tight text-[color:var(--text-strong)] sm:text-xl">
                     {card.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-[color:var(--text-soft)]">
+                  <p className="mt-2.5 text-[13px] leading-6 text-[color:var(--text-soft)] sm:text-sm sm:leading-6.5">
                     {card.body}
                   </p>
                 </div>
@@ -495,13 +499,13 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                 </p>
               </div>
 
-              <div className="grid gap-6 xl:grid-cols-3 bg-transparent">
+              <div className="grid gap-4 md:gap-5 xl:grid-cols-3 bg-transparent">
                 {featuredProjects.map((project) => (
                   <Link
                     key={project.slug}
                     href="/projects"
                     className={cn(
-                      "group relative overflow-hidden rounded-[32px] border border-[color:var(--panel-border)] p-7 shadow-[var(--panel-shadow)] backdrop-blur-xl",
+                      "group relative overflow-hidden rounded-[28px] border border-[color:var(--panel-border)] p-5 shadow-[var(--panel-shadow)] backdrop-blur-xl md:rounded-[32px] md:p-7",
                       themeGlowClasses[project.themeTag],
                     )}
                   >
@@ -525,14 +529,14 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                           {project.impact}
                         </span>
                       </div>
-                      <h3 className="mt-5 text-[1.85rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[color:var(--text-strong)]">
+                      <h3 className="mt-4 text-[1.45rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[color:var(--text-strong)] md:mt-5 md:text-[1.85rem]">
                         {project.title}
                       </h3>
-                      <p className="mt-4 text-sm leading-7 text-[color:var(--text-soft)]">
+                      <p className="mt-3 text-[13px] leading-6 text-[color:var(--text-soft)] md:mt-4 md:text-sm md:leading-7">
                         {project.summary}
                       </p>
                       <div className="mt-6 flex flex-wrap gap-2">
-                        {project.stack.slice(0, 4).map((item) => (
+                        {project.stack.slice(0, 3).map((item) => (
                           <span
                             key={item}
                             className="rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--page-base)_66%,transparent)] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[color:var(--text-soft)]"
@@ -541,7 +545,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                           </span>
                         ))}
                       </div>
-                      <div className="mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-[color:var(--text-strong)]">
+                      <div className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[color:var(--text-strong)] md:mt-8 md:text-sm">
                         Explore case study
                         <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                       </div>

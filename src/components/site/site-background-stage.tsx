@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import FloatingLines from "@/components/FloatingLines";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { cn } from "@/lib/utils";
 
 type BackgroundPalette = {
   lineGradient: string[];
@@ -29,6 +30,7 @@ export function SiteBackgroundStage() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [palette, setPalette] = useState<BackgroundPalette>(defaultPalette);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
     const syncPalette = () => {
@@ -57,14 +59,28 @@ export function SiteBackgroundStage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(pointer: coarse), (max-width: 767px)");
+    const syncTouchState = () => setIsTouchDevice(mediaQuery.matches);
+
+    syncTouchState();
+    mediaQuery.addEventListener("change", syncTouchState);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncTouchState);
+    };
+  }, []);
+
   return (
     <div aria-hidden className="site-background-stage">
-      <div className="site-background-ripple">
+      <div className={cn("site-background-ripple", isTouchDevice && "pointer-events-none")}>
         <BackgroundRippleEffect
           ambient={false}
-          captureViewportClicks
+          captureViewportClicks={!isTouchDevice}
           cellSize={56}
-          interactive
+          interactive={!isTouchDevice}
         />
       </div>
 
@@ -75,12 +91,12 @@ export function SiteBackgroundStage() {
             bendRadius={5}
             bendStrength={-0.5}
             enabledWaves={["top", "middle", "bottom"]}
-            interactive
+            interactive={!isTouchDevice}
             lineCount={9}
             lineDistance={17.5}
             linesGradient={palette.lineGradient}
             mixBlendMode="normal"
-            parallax
+            parallax={!isTouchDevice}
           />
         </div>
       ) : (

@@ -78,7 +78,7 @@ const FloatingDockMobile = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="surface-dark absolute right-0 top-full z-50 mt-3 flex min-w-[210px] flex-col gap-2 rounded-[28px] p-2 shadow-[0_22px_55px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+            className="absolute left-0 top-full z-50 mt-3 flex min-w-[220px] flex-col gap-2 rounded-[28px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_86%,rgba(6,9,16,0.94)),color-mix(in_srgb,var(--page-mid)_78%,rgba(10,13,24,0.88)))] p-2.5 shadow-[0_22px_55px_rgba(0,0,0,0.22)] backdrop-blur-xl"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -125,7 +125,7 @@ const FloatingDockMobile = ({
                           exit={{ opacity: 0, height: 0 }}
                           className="overflow-hidden"
                         >
-                          <div className="grid grid-cols-2 gap-2 px-1 pb-1">
+                          <div className="grid grid-cols-5 gap-2 px-1 pb-1">
                             {item.items.map((subItem) =>
                               subItem.href ? (
                                 <Link
@@ -134,18 +134,18 @@ const FloatingDockMobile = ({
                                   target={subItem.href.startsWith("mailto:") ? undefined : "_blank"}
                                   rel={subItem.href.startsWith("mailto:") ? undefined : "noreferrer"}
                                   onClick={() => setOpen(false)}
-                                  className="flex items-center gap-2 rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_10%,transparent)] px-3 py-2 text-xs uppercase tracking-[0.18em] text-[color:var(--text-soft)] transition hover:text-[color:var(--text-strong)]"
+                                  className="flex h-11 items-center justify-center rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_10%,transparent)] text-[color:var(--text-soft)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_30%,transparent)] hover:text-[color:var(--text-strong)]"
+                                  aria-label={subItem.title}
                                 >
-                                  <span className="h-3.5 w-3.5">{subItem.icon}</span>
-                                  <span>{subItem.title}</span>
+                                  <span className="h-4 w-4">{subItem.icon}</span>
                                 </Link>
                               ) : (
                                 <span
                                   key={subItem.title}
-                                  className="flex items-center gap-2 rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_8%,transparent)] px-3 py-2 text-xs uppercase tracking-[0.18em] text-[color:var(--text-faint)]"
+                                  className="flex h-11 items-center justify-center rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_8%,transparent)] text-[color:var(--text-faint)]"
+                                  aria-label={subItem.title}
                                 >
-                                  <span className="h-3.5 w-3.5">{subItem.icon}</span>
-                                  <span>{subItem.title}</span>
+                                  <span className="h-4 w-4">{subItem.icon}</span>
                                 </span>
                               ),
                             )}
@@ -187,7 +187,7 @@ const FloatingDockMobile = ({
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close navigation" : "Open navigation"}
-        className="surface-dark flex h-12 w-12 items-center justify-center rounded-full backdrop-blur-xl transition hover:scale-[1.03]"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_80%,rgba(8,12,18,0.86)),color-mix(in_srgb,var(--page-mid)_72%,rgba(10,14,22,0.92)))] backdrop-blur-xl transition hover:scale-[1.03]"
       >
         {open ? (
           <IconX className="h-5 w-5 text-[color:var(--text-strong)]" />
