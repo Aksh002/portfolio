@@ -48,7 +48,7 @@ const interestTracks: InterestTrack[] = [
     title: "Jogging",
     subtitle: "Morning pace / reset loop",
     description:
-      "Jogging gives me the cleanest mental reset. It is where I sort through ideas, simplify noisy problems, and get back to product work with a calmer head.",
+      "I dont like jogging, not really, i must say i hate it. But , it gets blurred, the world around me. It hurts, hurts more then reality, so it distracts me. I believe 1 jog can solve anything, absolutely anything, any emmotion u r feeling.",
     palette: "from-[#94d7ff] via-[#4ad6ff] to-[#d9fff5]",
     image:
       "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=1400&auto=format&fit=crop",
@@ -62,7 +62,7 @@ const interestTracks: InterestTrack[] = [
     title: "Anime",
     subtitle: "Scene build / emotional timing",
     description:
-      "Anime shapes how I think about pacing and payoff. The best arcs know when to hold back, when to hit hard, and how to make a reveal feel earned.",
+      "Anime shapes how I think about life tbh, how i percieve reality, its 2nd to Bhagvatgita in that sense. I watch variety of shows thou, not just serious. I can talk to u about em for an hour atleast.",
     palette: "from-[#ffb17a] via-[#ff8d6f] to-[#ffe3b0]",
     image:
       "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1400&auto=format&fit=crop",
@@ -90,7 +90,7 @@ const interestTracks: InterestTrack[] = [
     title: "Chelsea FC",
     subtitle: "Matchday focus / tactical obsession",
     description:
-      "Chelsea is pure systems drama for me: structure, transitions, pressure, and those rare moments where shape and individual brilliance finally click at the same time.",
+      "A random day, i was watching southampton playing against chealsea, actually, getting humiliated by chelsea, i thought maybe i should keep a tab on this team, they play good, next thing i know we won champions league. And there it started.",
     palette: "from-[#78a7ff] via-[#1d63ff] to-[#dbe7ff]",
     image:
       "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1400&auto=format&fit=crop",
@@ -104,7 +104,7 @@ const interestTracks: InterestTrack[] = [
     title: "Music",
     subtitle: "Headphones on / everything flows better",
     description:
-      "Music is probably the strongest influence on how I design rhythm into interfaces. I like products that feel composed, layered, and replayable instead of merely functional.",
+      "Music is what keeps me going, make me feel allive, its my campanion in the chaos. I'm a music junkie throu n through(checkmy wrap ;)).",
     palette: "from-[#9de7ff] via-[#4ad6ff] to-[#d7faff]",
     image:
       "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1400&auto=format&fit=crop",
@@ -118,7 +118,7 @@ const interestTracks: InterestTrack[] = [
     title: "Photography",
     subtitle: "Light study / framing habit",
     description:
-      "Photography sharpens how I see contrast, space, and framing. It makes me more deliberate about what deserves focus and what should fall quietly into the background.",
+      "I am no good at this, but i do it anyway, idc what you think about my click, i adore it.",
     palette: "from-[#d6d2cb] via-[#9aa7b8] to-[#f6f0e8]",
     image:
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop",
@@ -132,7 +132,7 @@ const interestTracks: InterestTrack[] = [
     title: "Pushups",
     subtitle: "Micro-discipline / no excuses",
     description:
-      "Pushups are the simplest kind of consistency signal. Small reps, repeatable effort, no drama. I like the same quality in engineering habits.",
+      "I transformed myself, with just pushups. 3 sets of 20 2 times a day is all you need my friend. Just frikin Discipline, thats all",
     palette: "from-[#d4ff88] via-[#a7f45a] to-[#efffd4]",
     image:
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1400&auto=format&fit=crop",
@@ -146,7 +146,7 @@ const interestTracks: InterestTrack[] = [
     title: "F1",
     subtitle: "Precision / pressure / milliseconds",
     description:
-      "F1 is one of my favorite examples of ruthless optimization under pressure. Tiny gains matter, coordination matters, and the margin for error is basically gone.",
+      "Max is the Greatest of all time, period.",
     palette: "from-[#ff9f9f] via-[#ff5f5f] to-[#ffd8d8]",
     image:
       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1400&auto=format&fit=crop",
@@ -160,7 +160,7 @@ const interestTracks: InterestTrack[] = [
     title: "Tennis",
     subtitle: "Rhythm / control / sharp footwork",
     description:
-      "Tennis feels like elegant problem-solving under motion. It has that balance of patience and sudden aggression that I really enjoy in both sport and product strategy.",
+      "I sold a kidney to buy a racket, and now its rotting cuz all i do is hit 6s, gawd I'm so bad.",
     palette: "from-[#fff69c] via-[#d8ff64] to-[#faffd8]",
     image:
       "https://images.unsplash.com/photo-1542144582-1ba00456b5e3?q=80&w=1400&auto=format&fit=crop",
@@ -174,7 +174,7 @@ const interestTracks: InterestTrack[] = [
     title: "Food",
     subtitle: "Comfort mode / city exploration",
     description:
-      "Food is one of my favorite ways to experience a place. I like discovering spots that feel specific, a little chaotic, and somehow exactly right.",
+      "I dont have to say anything, my belly is enough to talk.",
     palette: "from-[#ffc38e] via-[#ff8d6f] to-[#fff0d9]",
     image:
       "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400&auto=format&fit=crop",
@@ -202,7 +202,7 @@ const interestTracks: InterestTrack[] = [
     title: "Vibe-coding",
     subtitle: "Late night / flow state / shipping things",
     description:
-      "Vibe-coding is what happens when design, code, references, and curiosity all line up. It is less about being messy and more about finding momentum while the idea is alive.",
+      "Yeah give me that eye, that judgy eye, I am just poser arent I. I believe if i know whats going on in my codebase, and i what i wanna do, yeah danm right i am gonna write a prompt instead of fighting with the code(atleast for frontend).",
     palette: "from-[#8ff0d8] via-[#4ad6ff] to-[#d9fff8]",
     image:
       "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop",
