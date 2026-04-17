@@ -8,7 +8,9 @@ import { ProjectEffectCard } from "@/components/site/project-effect-card";
 import { PageShell } from "@/components/site/page-shell";
 import { ProjectsShowcase } from "@/components/site/projects-showcase";
 import { Badge } from "@/components/ui/badge";
+import { Meteors } from "@/components/ui/meteors";
 import { getAllProjects } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 const accentStyles = {
   anime: {
@@ -125,6 +127,18 @@ export default async function ProjectsPage() {
                   style={caseVisibilityStyle}
                   className="overflow-hidden"
                 >
+                  <Meteors
+                    number={14}
+                    className={cn(
+                      "pointer-events-none lg:hidden",
+                      project.themeTag === "football" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent)_74%,transparent)]",
+                      project.themeTag === "anime" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-tertiary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-tertiary)_74%,transparent)]",
+                      project.themeTag === "music" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-secondary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-secondary)_74%,transparent)]",
+                    )}
+                  />
                   <div
                     className="pointer-events-none absolute inset-x-0 top-0 h-px"
                     style={{
@@ -173,6 +187,18 @@ export default async function ProjectsPage() {
                   className="overflow-hidden"
                   style={panelVisibilityStyle}
                 >
+                  <Meteors
+                    number={10}
+                    className={cn(
+                      "pointer-events-none lg:hidden",
+                      project.themeTag === "football" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent)_74%,transparent)]",
+                      project.themeTag === "anime" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-tertiary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-tertiary)_74%,transparent)]",
+                      project.themeTag === "music" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-secondary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-secondary)_74%,transparent)]",
+                    )}
+                  />
                   <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
                     <div className="space-y-4">
                       <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-[color:var(--text-faint)]">
@@ -223,6 +249,18 @@ export default async function ProjectsPage() {
                   className="overflow-hidden"
                   style={panelVisibilityStyle}
                 >
+                  <Meteors
+                    number={8}
+                    className={cn(
+                      "pointer-events-none lg:hidden",
+                      project.themeTag === "football" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent)_74%,transparent)]",
+                      project.themeTag === "anime" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-tertiary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-tertiary)_74%,transparent)]",
+                      project.themeTag === "music" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-secondary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-secondary)_74%,transparent)]",
+                    )}
+                  />
                   <div className="space-y-4">
                     <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-[color:var(--text-faint)]">
                       Stack
@@ -250,6 +288,18 @@ export default async function ProjectsPage() {
                   className="overflow-hidden"
                   style={panelVisibilityStyle}
                 >
+                  <Meteors
+                    number={8}
+                    className={cn(
+                      "pointer-events-none lg:hidden",
+                      project.themeTag === "football" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent)_74%,transparent)]",
+                      project.themeTag === "anime" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-tertiary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-tertiary)_74%,transparent)]",
+                      project.themeTag === "music" &&
+                        "bg-[color:color-mix(in_srgb,var(--accent-secondary)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent-secondary)_74%,transparent)]",
+                    )}
+                  />
                   <div className="space-y-2">
                     <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-[color:var(--text-faint)]">
                       Build Story

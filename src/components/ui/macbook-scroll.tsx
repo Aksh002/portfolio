@@ -103,7 +103,7 @@ export const MacbookScroll = ({
     <div
       ref={ref}
       className={cn(
-        "flex min-h-[160vh] shrink-0 scale-[0.38] transform flex-col items-center justify-start py-8 [perspective:1000px] sm:scale-[0.54] md:min-h-[185vh] md:scale-[0.82] md:py-32 xl:scale-100 xl:py-44",
+        "mx-auto flex min-h-[160vh] shrink-0 origin-top scale-[0.38] transform flex-col items-center justify-start py-8 [perspective:1000px] sm:scale-[0.54] md:min-h-[185vh] md:scale-[0.82] md:py-32 xl:scale-100 xl:py-44",
         className,
       )}
     >

@@ -224,11 +224,20 @@ export function AboutInterestsPlayer() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const hasMountedRef = useRef(false);
 
   useEffect(() => {
     const activeButton = itemRefs.current[activeIndex];
-    if (!activeButton || !listRef.current) return;
-    activeButton.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    const list = listRef.current;
+    if (!activeButton || !list) return;
+
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    const nextTop = Math.max(0, activeButton.offsetTop - list.clientHeight * 0.28);
+    list.scrollTo({ top: nextTop, behavior: "smooth" });
   }, [activeIndex]);
 
   useEffect(() => {

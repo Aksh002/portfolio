@@ -257,13 +257,13 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
             <div
               ref={watermarkRef}
-              className="pointer-events-none absolute inset-x-0 bottom-[-6%] z-[1] hidden px-4 text-[clamp(5rem,23vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)] sm:block"
+              className="pointer-events-none absolute inset-x-0 bottom-[-4%] z-[1] block px-3 text-[clamp(3.8rem,28vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)] sm:bottom-[-6%] sm:px-4 sm:text-[clamp(5rem,23vw,21rem)]"
             >
               <div>Akshit</div>
               <div className="-mt-4 ml-[12vw]">Gangwar</div>
             </div>
 
-            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 -pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10 lg:pb-10 lg:pt-8">
+            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10 lg:pb-10 lg:pt-8">
               <div ref={textRef} className="relative flex max-w-[640px] flex-col justify-between gap-4 lg:py-6">
                 <div className="space-y-4">
                   <Badge className="w-fit rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--page-base)_55%,rgba(255,255,255,0.2)),color-mix(in_srgb,var(--accent-secondary)_10%,transparent)_100%)] px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--accent-secondary)_58%,var(--text-strong))] shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
@@ -383,7 +383,8 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
             </div>
 
             <div className="grid gap-10 xl:grid-cols-[minmax(0,1.14fr)_minmax(360px,0.86fr)] xl:items-start">
-              <div className="flex flex-col items-center xl:sticky xl:top-24 xl:block">
+              <div className="xl:sticky xl:top-24">
+                <div className="mx-auto flex w-full max-w-full flex-col items-center overflow-x-clip xl:mx-0 xl:items-start xl:overflow-visible">
                 <MacbookScroll
                   badge={<InitialBadge />}
                   hideTitle
@@ -391,7 +392,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   screenHref="https://falak.mitblr.in"
                   src={falakHomepagePreview.src}
                   title={macbookTitle}
-                  className="min-h-[80vh] scale-[0.21] py-0 sm:min-h-[96vh] sm:scale-[0.31] md:min-h-[118vh] md:scale-[0.46] lg:min-h-[135vh] lg:scale-[0.62] xl:min-h-[auto] xl:scale-[0.72] 2xl:scale-[0.82]"
+                  className="mx-auto min-h-[76vh] w-full max-w-[100vw] scale-[0.2] py-0 sm:min-h-[92vh] sm:scale-[0.29] md:min-h-[112vh] md:scale-[0.44] lg:min-h-[132vh] lg:scale-[0.62] xl:min-h-[auto] xl:max-w-none xl:scale-[0.72] 2xl:scale-[0.82]"
                   backPanelClassName="h-[18rem] w-[52rem]"
                   frontPanelClassName="h-[30rem] w-[52rem]"
                   baseClassName="h-[35.75rem] w-[52rem]"
@@ -400,7 +401,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   rotateRange={[-28, 0]}
                   imageClassName="p-1.5"
                 />
-                <div className="-mt-18 flex justify-center sm:-mt-14 md:-mt-10 lg:-mt-6 xl:mt-2">
+                <div className="-mt-20 flex justify-center sm:-mt-16 md:-mt-12 lg:-mt-8 xl:-mt-2">
                   <a
                     href="https://falak.mitblr.in"
                     target="_blank"
@@ -410,6 +411,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                     Visit Falak
                     <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
+                </div>
                 </div>
               </div>
 

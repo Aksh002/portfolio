@@ -6,6 +6,7 @@
  **/
 
 import Link from "next/link";
+import GlassSurface from "@/components/GlassSurface";
 
 import { cn } from "@/lib/utils";
 import {
@@ -78,116 +79,135 @@ const FloatingDockMobile = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="absolute left-0 top-full z-50 mt-3 flex min-w-[220px] flex-col gap-2 rounded-[28px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_86%,rgba(6,9,16,0.94)),color-mix(in_srgb,var(--page-mid)_78%,rgba(10,13,24,0.88)))] p-2.5 shadow-[0_22px_55px_rgba(0,0,0,0.22)] backdrop-blur-xl"
+            className="absolute left-0 top-full z-50 mt-3 w-[220px]"
           >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                {item.items?.length ? (
-                  <div className="space-y-2">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setExpanded((current) => (current === item.title ? null : item.title))
-                      }
-                      className="flex w-full items-center gap-3 rounded-[22px] bg-[color:var(--nav-hover)] px-3 py-3 text-sm text-[color:var(--text-soft)] transition duration-300 hover:text-[color:var(--text-strong)]"
-                    >
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_12%,transparent)]">
-                        <span className="h-4 w-4">{item.icon}</span>
-                      </span>
-                      <span className="font-medium tracking-[0.08em]">{item.title}</span>
-                      <IconChevronDown
-                        className={cn(
-                          "ml-auto h-4 w-4 transition-transform duration-300",
-                          expanded === item.title && "rotate-180",
-                        )}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {expanded === item.title && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="grid grid-cols-5 gap-2 px-1 pb-1">
-                            {item.items.map((subItem) =>
-                              subItem.href ? (
-                                <Link
-                                  key={subItem.title}
-                                  href={subItem.href}
-                                  target={subItem.href.startsWith("mailto:") ? undefined : "_blank"}
-                                  rel={subItem.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                                  onClick={() => setOpen(false)}
-                                  className="flex h-11 items-center justify-center rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_10%,transparent)] text-[color:var(--text-soft)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_30%,transparent)] hover:text-[color:var(--text-strong)]"
-                                  aria-label={subItem.title}
-                                >
-                                  <span className="h-4 w-4">{subItem.icon}</span>
-                                </Link>
-                              ) : (
-                                <span
-                                  key={subItem.title}
-                                  className="flex h-11 items-center justify-center rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_8%,transparent)] text-[color:var(--text-faint)]"
-                                  aria-label={subItem.title}
-                                >
-                                  <span className="h-4 w-4">{subItem.icon}</span>
-                                </span>
-                              ),
-                            )}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href ?? "#"}
+            <GlassSurface
+              width="100%"
+              height="100%"
+              borderRadius={28}
+              backgroundOpacity={0.14}
+              brightness={58}
+              opacity={0.92}
+              blur={12}
+              displace={0.45}
+              saturation={1.16}
+              distortionScale={-120}
+              greenOffset={8}
+              blueOffset={14}
+              mixBlendMode="screen"
+              className="border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_86%,rgba(6,9,16,0.84)),color-mix(in_srgb,var(--page-mid)_78%,rgba(10,13,24,0.92)))] shadow-[0_22px_55px_rgba(0,0,0,0.22)]"
+            >
+              <div className="relative h-full w-full rounded-[28px] bg-[linear-gradient(180deg,rgba(7,10,18,0.18),rgba(7,10,18,0.32))] p-2.5">
+                {items.map((item, idx) => (
+                  <motion.div
                     key={item.title}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 rounded-[22px] px-3 py-3 text-sm transition duration-300",
-                      activeHref === item.href
-                        ? "bg-[linear-gradient(135deg,var(--accent),var(--accent-secondary))] text-[color:var(--text-inverse)] shadow-[0_14px_28px_rgba(74,214,255,0.2)]"
-                        : "bg-[color:var(--nav-hover)] text-[color:var(--text-soft)] hover:text-[color:var(--text-strong)]",
-                    )}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: 10,
+                      transition: {
+                        delay: idx * 0.05,
+                      },
+                    }}
+                    transition={{ delay: (items.length - 1 - idx) * 0.05 }}
                   >
-                    <span
-                      className={cn(
-                        "flex h-10 w-10 items-center justify-center rounded-full border transition",
-                        activeHref === item.href
-                          ? "border-black/10 bg-black/10"
-                          : "border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_12%,transparent)]",
-                      )}
-                    >
-                      <span className="h-4 w-4">{item.icon}</span>
-                    </span>
-                    <span className="font-medium tracking-[0.08em]">{item.title}</span>
-                  </Link>
-                )}
-              </motion.div>
-            ))}
+                    {item.items?.length ? (
+                      <div className="space-y-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpanded((current) => (current === item.title ? null : item.title))
+                          }
+                          className="flex w-full items-center gap-3 rounded-[22px] bg-[color:var(--nav-hover)] px-3 py-3 text-sm text-[color:var(--text-soft)] transition duration-300 hover:text-[color:var(--text-strong)]"
+                        >
+                          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_12%,transparent)]">
+                            <span className="h-4 w-4">{item.icon}</span>
+                          </span>
+                          <span className="font-medium tracking-[0.08em]">{item.title}</span>
+                          <IconChevronDown
+                            className={cn(
+                              "ml-auto h-4 w-4 transition-transform duration-300",
+                              expanded === item.title && "rotate-180",
+                            )}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {expanded === item.title && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="grid grid-cols-5 gap-2 px-1 pb-1">
+                                {item.items.map((subItem) =>
+                                  subItem.href ? (
+                                    <Link
+                                      key={subItem.title}
+                                      href={subItem.href}
+                                      target={subItem.href.startsWith("mailto:") ? undefined : "_blank"}
+                                      rel={subItem.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                                      onClick={() => setOpen(false)}
+                                      className="flex h-11 items-center justify-center rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_10%,transparent)] text-[color:var(--text-soft)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_30%,transparent)] hover:text-[color:var(--text-strong)]"
+                                      aria-label={subItem.title}
+                                    >
+                                      <span className="h-4 w-4">{subItem.icon}</span>
+                                    </Link>
+                                  ) : (
+                                    <span
+                                      key={subItem.title}
+                                      className="flex h-11 items-center justify-center rounded-[18px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_8%,transparent)] text-[color:var(--text-faint)]"
+                                      aria-label={subItem.title}
+                                    >
+                                      <span className="h-4 w-4">{subItem.icon}</span>
+                                    </span>
+                                  ),
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href ?? "#"}
+                        key={item.title}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "flex items-center gap-3 rounded-[22px] px-3 py-3 text-sm transition duration-300",
+                          activeHref === item.href
+                            ? "bg-[linear-gradient(135deg,var(--accent),var(--accent-secondary))] text-[color:var(--text-inverse)] shadow-[0_14px_28px_rgba(74,214,255,0.2)]"
+                            : "bg-[color:var(--nav-hover)] text-[color:var(--text-soft)] hover:text-[color:var(--text-strong)]",
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            "flex h-10 w-10 items-center justify-center rounded-full border transition",
+                            activeHref === item.href
+                              ? "border-black/10 bg-black/10"
+                              : "border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--background)_12%,transparent)]",
+                          )}
+                        >
+                          <span className="h-4 w-4">{item.icon}</span>
+                        </span>
+                        <span className="font-medium tracking-[0.08em]">{item.title}</span>
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </GlassSurface>
           </motion.div>
         )}
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close navigation" : "Open navigation"}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_80%,rgba(8,12,18,0.86)),color-mix(in_srgb,var(--page-mid)_72%,rgba(10,14,22,0.92)))] backdrop-blur-xl transition hover:scale-[1.03]"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-transparent bg-transparent backdrop-blur-xl transition hover:scale-[1.03]"
       >
         {open ? (
           <IconX className="h-5 w-5 text-[color:var(--text-strong)]" />
