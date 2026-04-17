@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Code2, Mail } from "lucide-react";
 import { IconBrandGithub, IconBrandInstagram, IconBrandLinkedin } from "@tabler/icons-react";
 
 import { profileIntro, socialLinks } from "@/lib/site";
@@ -8,6 +8,7 @@ const socialIconMap = {
   Email: Mail,
   GitHub: IconBrandGithub,
   LinkedIn: IconBrandLinkedin,
+  LeetCode: Code2,
   Instagram: IconBrandInstagram,
 } as const;
 

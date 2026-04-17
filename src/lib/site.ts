@@ -14,13 +14,13 @@ export const siteUrl =
 
 export const profileIntro: ProfileIntro = {
   name: "Akshit Gangwar",
-  title: "Software Development Engineer (SDE) Intern | Backend Developer | Full-Stack Developer",
+  title: "Software Development Engineer (SDE)       | Backend Developer | Full-Stack Developer",
   tagline:
     "Backend-focused engineer building production-grade full-stack systems with scalable APIs, strong architecture, and performance-first execution.",
   location: "Bengaluru, India",
   phone: "+91 63971 77067",
   shortBio:
-    "Backend-focused software engineer experienced in shipping production-grade full-stack applications for 50K+ users.",
+    "Hi, I am a Computer Science undergrad and backend-focused software engineer. I specialize in building scalable, production-grade web applications, with hands-on experience in designing API-driven, microservices-style, and serverless systems. I’ve developed and deployed full-stack platforms used by 50,000+ users, focusing on performance, reliability, and clean architecture. My work spans modern web technologies including Node.js, Next.js, PostgreSQL, and cloud-native tooling, with a strong emphasis on backend engineering and system design. I enjoy solving complex problems, shipping efficient solutions, and continuously pushing my technical boundaries.",
   oldLongBio:
     "I enjoy building systems where architecture, performance, and product clarity all matter at once. Most of my work has centered on API-driven applications, secure authentication flows, async job orchestration, and scalable full-stack products that can handle real traffic without losing developer ergonomics.",
   longBio:
@@ -41,6 +41,7 @@ export const navItems: NavItem[] = [
 export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/Aksh002" },
   { label: "LinkedIn", href: "https://linkedin.com/in/akshit-gangwar-b93840282" },
+  { label: "LeetCode", href: "https://leetcode.com/u/Aksh002/" },
   { label: "Email", href: `mailto:${profileIntro.email}` },
 ];
 

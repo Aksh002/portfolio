@@ -277,14 +277,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                     <p className="max-w-md text-[15px] leading-7 text-[color:var(--text-soft)] md:text-lg">
                       {profileIntro.title}
                     </p>
-                    <p
-                      ref={bioRef}
-                      className="max-w-xl min-h-[5.5rem] text-[13px] leading-6 text-[color:var(--text-faint)] md:min-h-[8.5rem] md:text-base md:leading-7"
-                    >
-                      {profileIntro.longBio}
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                     <Link
                       href="/projects"
                       className={cn(
@@ -321,6 +314,14 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                       </GlassSurface>
                     </Link>
                   </div>
+                    <p
+                      ref={bioRef}
+                      className="max-w-xl min-h-[5.5rem] text-[13px] leading-6 text-[color:var(--text-faint)] md:min-h-[8.5rem] md:text-base md:leading-7"
+                    >
+                      {profileIntro.shortBio}
+                    </p>
+                  </div>
+                  
                 </div>
 
                 <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">

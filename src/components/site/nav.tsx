@@ -12,6 +12,7 @@ import {
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandX,
+  IconCode,
   IconCamera,
   IconShare3,
 } from "@tabler/icons-react";
@@ -35,6 +36,8 @@ export function SiteNav() {
     "https://linkedin.com/in/akshit-gangwar-b93840282";
   const mailHref =
     socialLinks.find((item) => item.label === "Email")?.href ?? `mailto:${profileIntro.email}`;
+  const leetCodeHref =
+    socialLinks.find((item) => item.label === "LeetCode")?.href ?? "https://leetcode.com/u/Aksh002/";
 
   const dockItems: FloatingDockItem[] = navItems.map((item) => {
     const Icon = navIcons[item.href as keyof typeof navIcons] ?? House;
@@ -58,6 +61,11 @@ export function SiteNav() {
         title: "LinkedIn",
         href: linkedInHref,
         icon: <IconBrandLinkedin className="h-full w-full" strokeWidth={1.9} />,
+      },
+      {
+        title: "LeetCode",
+        href: leetCodeHref,
+        icon: <IconCode className="h-full w-full" strokeWidth={1.9} />,
       },
       {
         title: "Instagram",
