@@ -26,7 +26,7 @@ export default function ThreeDCardDemo() {
               translateZ="50"
               className="display max-w-[10ch] text-[clamp(2.2rem,11vw,5.2rem)] font-semibold uppercase leading-[0.92] tracking-[-0.06em] text-[color:var(--text-strong)]"
             >
-              Calm surfaces. Serious systems.
+              WHO IS AKSHIT?
             </CardItem>
             <CardItem
               translateZ="60"

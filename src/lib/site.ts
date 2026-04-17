@@ -21,8 +21,10 @@ export const profileIntro: ProfileIntro = {
   phone: "+91 63971 77067",
   shortBio:
     "Backend-focused software engineer experienced in shipping production-grade full-stack applications for 50K+ users.",
-  longBio:
+  oldLongBio:
     "I enjoy building systems where architecture, performance, and product clarity all matter at once. Most of my work has centered on API-driven applications, secure authentication flows, async job orchestration, and scalable full-stack products that can handle real traffic without losing developer ergonomics.",
+  longBio:
+    "HI!!! I am Akshit Gangwar, i am a 3rd year student, doing BTech in Computer Science. I like to explore things , explore new technolligies, build end-to-end products and solve problems. I can be lazy at times, but if a deadline is up on the neck, i tend to deliver my best work. Currently I’ve been getting my hands dirty in developing Web-Based Solutions, building backend heavy applications and grinding leetcode(istg killme fr). Apart from camoing on my laptop and bed-rotting, I love to go out for early morning jogs, challenge myself in pushups, ggetting depressed when my favourate football team-Chelsea looses(happening a lot lately), running through my spotify playlist, watching all kind of animes(name any and i bet i have watched it), and binge-watch series. By nature, i am the guy who pushes to the max at the end of the 400m stint, the one who locks in when deadline could make flatline, dive in the lappy and rest lyf in the bin. Hence, I can boast I have experience in delivering best quality under extremely high pressure situations. I tends to ship fast fast, get done with the work and then chill out. But problem solving is what i take with respect, i take my sweet long timethere. My phyosophy:- ‘Efforts follow law of equivalent exchange, higher the efforts, higher win probability. But results, wo to sab prabhu ki icha hai” ",
   professionalSummary:
     "Backend-focused software engineer experienced in building and deploying production-grade full-stack applications. I design API-driven, microservices-style, serverless, and async systems with a focus on scalable architecture, reliability, and performance-oriented backend engineering.",
   availability: "Open to software engineering, backend, and full-stack opportunities.",

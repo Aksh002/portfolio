@@ -19,6 +19,7 @@ export type ProfileIntro = {
   location: string;
   phone: string;
   shortBio: string;
+  oldLongBio: string;
   longBio: string;
   professionalSummary: string;
   availability: string;

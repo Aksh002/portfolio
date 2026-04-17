@@ -85,19 +85,19 @@ const FloatingDockMobile = ({
               width="100%"
               height="100%"
               borderRadius={28}
-              backgroundOpacity={0.14}
-              brightness={58}
-              opacity={0.92}
-              blur={12}
+              backgroundOpacity={0.18}
+              brightness={46}
+              opacity={0.94}
+              blur={14}
               displace={0.45}
               saturation={1.16}
               distortionScale={-120}
               greenOffset={8}
               blueOffset={14}
               mixBlendMode="screen"
-              className="border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_86%,rgba(6,9,16,0.84)),color-mix(in_srgb,var(--page-mid)_78%,rgba(10,13,24,0.92)))] shadow-[0_22px_55px_rgba(0,0,0,0.22)]"
+              className="border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_92%,rgba(4,6,12,0.92)),color-mix(in_srgb,var(--page-mid)_88%,rgba(6,8,16,0.96)))] shadow-[0_22px_55px_rgba(0,0,0,0.28)]"
             >
-              <div className="relative h-full w-full rounded-[28px] bg-[linear-gradient(180deg,rgba(7,10,18,0.18),rgba(7,10,18,0.32))] p-2.5">
+              <div className="relative h-full w-full rounded-[28px] bg-[linear-gradient(180deg,rgba(4,6,12,0.4),rgba(4,6,12,0.6))] p-2.5">
                 {items.map((item, idx) => (
                   <motion.div
                     key={item.title}

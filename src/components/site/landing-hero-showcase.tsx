@@ -358,6 +358,11 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                 <Keyboard className="drop-shadow-[0_45px_90px_rgba(0,0,0,0.28)]" />
               </div>
             </div>
+            <div className="pointer-events-none absolute right-[-40%] top-[58%] z-20 block w-[560px] -translate-y-1/2 select-none opacity-[0.82] lg:hidden">
+              <div className="origin-top-right scale-[0.16] sm:scale-[0.21]">
+                <Keyboard className="drop-shadow-[0_35px_70px_rgba(0,0,0,0.24)]" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

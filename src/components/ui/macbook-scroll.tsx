@@ -86,16 +86,20 @@ export const MacbookScroll = ({
 
   const scaleX = useTransform(
     smoothProgress,
-    [0, 0.34],
-    [1.06, isMobile ? 1 : 1.18],
+    isMobile ? [0, 0.42] : [0, 0.34],
+    [isMobile ? 1.1 : 1.06, isMobile ? 1.01 : 1.18],
   );
   const scaleY = useTransform(
     smoothProgress,
-    [0, 0.34],
-    [0.82, isMobile ? 1 : 1.14],
+    isMobile ? [0, 0.42] : [0, 0.34],
+    [isMobile ? 0.68 : 0.82, isMobile ? 1.02 : 1.14],
   );
-  const translate = useTransform(smoothProgress, [0, 1], [0, isMobile ? 340 : 760]);
-  const rotate = useTransform(smoothProgress, [0.08, 0.34], rotateRange);
+  const translate = useTransform(smoothProgress, [0, 1], [0, isMobile ? 420 : 760]);
+  const rotate = useTransform(
+    smoothProgress,
+    isMobile ? [0, 0.42] : [0.08, 0.34],
+    isMobile ? [rotateRange[0] - 10, rotateRange[1]] : rotateRange,
+  );
   const textTransform = useTransform(smoothProgress, [0, 0.28], [0, 72]);
   const textOpacity = useTransform(smoothProgress, [0, 0.18], [1, 0]);
 

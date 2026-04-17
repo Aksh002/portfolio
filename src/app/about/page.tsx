@@ -39,18 +39,16 @@ export default function AboutPage() {
                 <h1 className="display max-w-[11ch] text-[clamp(2.4rem,10vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.065em] text-[color:var(--text-strong)]">
                   The engineer behind the atmosphere.
                 </h1>
-                <p className="max-w-[44rem] text-[15px] leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem] md:leading-8">
-                  {profileIntro.longBio}
-                </p>
-                <p className="max-w-[42rem] text-[15px] leading-8 text-[color:color-mix(in_srgb,var(--text-strong)_66%,transparent)]">
-                  {profileIntro.professionalSummary}
-                </p>
+                
+                <div className="relative mx-auto flex w-full justify-center lg:justify-center">
+                  <CometCardDemo className="mx-auto " />
+                </div>
               </div>
             </div>
 
-            <div className="relative mx-auto flex w-full justify-center lg:justify-end">
-              <CometCardDemo className="mx-auto lg:mr-0" />
-            </div>
+            <p className="max-w-[44rem] text-[15px] leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem] md:leading-8">
+              {profileIntro.longBio}
+            </p>
           </div>
         </section>
       </Reveal>
