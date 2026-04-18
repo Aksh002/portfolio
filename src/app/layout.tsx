@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono, Play } from "next/font/google";
 import Script from "next/script";
 
 import { SiteFooter } from "@/components/site/footer";
@@ -8,6 +9,20 @@ import { ThemeProvider } from "@/components/site/theme-provider";
 import { profileIntro, siteUrl } from "@/lib/site";
 
 import "./globals.css";
+
+const play = Play({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-play",
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -48,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="dark">
-      <body suppressHydrationWarning>
+      <body className={`${play.className} ${play.variable} ${jetBrainsMono.variable}`} suppressHydrationWarning>
         <Script
           id="theme-init"
           strategy="beforeInteractive"

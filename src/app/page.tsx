@@ -38,7 +38,7 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/resume" className={buttonVariants({ variant: "default" })}>
+              <Link href="/resume" className={cn(buttonVariants({ variant: "outline" }), "print-hidden")}>
                 Open Resume
               </Link>
               <Link

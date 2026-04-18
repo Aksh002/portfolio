@@ -257,7 +257,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
             <div
               ref={watermarkRef}
-              className="pointer-events-none absolute inset-x-0 bottom-[-4%] z-[1] block px-3 text-[clamp(3.8rem,28vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)] sm:bottom-[-6%] sm:px-4 sm:text-[clamp(5rem,23vw,21rem)]"
+              className="hero-watermark pointer-events-none absolute inset-x-0 bottom-[-4%] z-[1] block px-3 text-[clamp(3.8rem,28vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)] sm:bottom-[-6%] sm:px-4 sm:text-[clamp(5rem,23vw,21rem)]"
             >
               <div>Akshit</div>
               <div className="-mt-4 ml-[12vw]">Gangwar</div>
@@ -530,9 +530,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                     />
                     <div className="relative z-10">
                       <div className="flex items-center justify-between gap-4">
-                        <span className="rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[color:color-mix(in_srgb,var(--page-base)_66%,transparent)] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[color:var(--text-faint)]">
-                          {project.themeTag}
-                        </span>
+                        
                         <span className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-faint)]">
                           {project.impact}
                         </span>

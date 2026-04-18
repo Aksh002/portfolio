@@ -37,7 +37,7 @@ export function SiteNav() {
   const mailHref =
     socialLinks.find((item) => item.label === "Email")?.href ?? `mailto:${profileIntro.email}`;
   const leetCodeHref =
-    socialLinks.find((item) => item.label === "LeetCode")?.href ?? "https://leetcode.com/u/Aksh002/";
+    socialLinks.find((item) => item.label === "LeetCode")?.href ?? "https://leetcode.com/u/akki_gang_002/";
 
   const dockItems: FloatingDockItem[] = navItems.map((item) => {
     const Icon = navIcons[item.href as keyof typeof navIcons] ?? House;
