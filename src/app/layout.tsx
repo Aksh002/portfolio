@@ -4,6 +4,7 @@ import Script from "next/script";
 
 import { SiteFooter } from "@/components/site/footer";
 import { SiteBackgroundStage } from "@/components/site/site-background-stage";
+import { MobileDesktopToast } from "@/components/site/mobile-desktop-toast";
 import { SiteNav } from "@/components/site/nav";
 import { ThemeProvider } from "@/components/site/theme-provider";
 import { profileIntro, siteUrl } from "@/lib/site";
@@ -92,6 +93,7 @@ export default function RootLayout({
               {children}
             </main>
             <SiteFooter />
+            <MobileDesktopToast />
           </div>
         </ThemeProvider>
       </body>
