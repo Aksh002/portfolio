@@ -61,7 +61,7 @@ export const MacbookScroll = ({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start 92%", "end start"],
   });
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 120,

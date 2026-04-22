@@ -8,6 +8,7 @@ import { PageShell } from "@/components/site/page-shell";
 import { Reveal } from "@/components/site/reveal";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import {
+  aboutBioParagraphs,
   experienceItems,
   profileIntro,
   skillGroups,
@@ -46,9 +47,11 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <p className="max-w-[44rem] text-[15px] leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem] md:leading-8">
-              {profileIntro.longBio}
-            </p>
+            <div className="max-w-[44rem] space-y-4 text-[15px] leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem] md:leading-8">
+              {aboutBioParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </div>
         </section>
       </Reveal>

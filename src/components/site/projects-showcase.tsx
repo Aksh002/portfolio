@@ -59,6 +59,14 @@ export function ProjectsShowcase({
 
     const context = gsap.context(() => {
       const cases = gsap.utils.toArray<HTMLElement>("[data-project-case]");
+      const isCompactViewport = window.matchMedia("(max-width: 1023px), (pointer: coarse)").matches;
+
+      if (isCompactViewport) {
+        cases.forEach((caseElement) => {
+          caseElement.style.setProperty("--project-focus", "1");
+        });
+        return;
+      }
 
       cases.forEach((caseElement) => {
         const left = caseElement.querySelector<HTMLElement>("[data-project-left]");

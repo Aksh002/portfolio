@@ -52,6 +52,17 @@ export const profileHighlights: HighlightItem[] = [
   { label: "Strength", value: "Async workflows, auth systems, serverless runtimes, and deployment-ready architecture" },
 ];
 
+export const landingShortBioParagraphs = [
+  "Computer Science undergrad and backend-focused engineer, building scalable web applications with API-first thinking, strong architecture, and production readiness in mind.",
+  "I have shipped full-stack platforms used by 50,000+ users and enjoy turning complex requirements into reliable systems with clean execution.",
+];
+
+export const aboutBioParagraphs = [
+  "Hi, I am Akshit Gangwar, a third-year Computer Science student who likes exploring new technologies, building end-to-end products, and solving problems that actually feel worth the effort.",
+  "Most of my recent work has been around web-based solutions and backend-heavy applications. Outside that, I am equally at home going for early morning jogs, running through my Spotify playlist, watching anime, or getting emotionally invested in Chelsea matches that absolutely do not help my peace of mind.",
+  "I tend to do my best work under pressure. I ship fast when the direction is clear, stay stubborn about problem solving when it matters, and genuinely enjoy the part where effort, systems, and deadlines all collide.",
+];
+
 export const interestWorlds: InterestWorld[] = [
   {
     key: "football",

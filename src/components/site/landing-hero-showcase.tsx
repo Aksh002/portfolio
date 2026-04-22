@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import gsap from "gsap";
@@ -8,20 +9,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 
+import akshitPhoto from "@/public/akshit.jpeg";
+import akshitFigure from "@/public/akshit_ac.png";
 import falakHomepagePreview from "@/public/image.png";
 import GlassSurface from "@/components/GlassSurface";
 import { HeroTechStackParallax } from "@/components/site/hero-tech-stack-parallax";
-import { Keyboard } from "@/components/ui/keyboard";
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { Meteors } from "@/components/ui/meteors";
-import { profileHighlights, profileIntro } from "@/lib/site";
+import { landingShortBioParagraphs, profileHighlights, profileIntro } from "@/lib/site";
 import type { Project } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const HERO_BIO_FADE_START = 0.08;
 const HERO_BIO_FADE_DURATION = 0.22;
 
 const falakStoryCards = [
@@ -105,9 +106,14 @@ const falakBentoAccents = [
 
 export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Project[] }) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const textRef = useRef<HTMLDivElement | null>(null);
-  const bioRef = useRef<HTMLParagraphElement | null>(null);
-  const keyboardRef = useRef<HTMLDivElement | null>(null);
+  const heroWindowRef = useRef<HTMLDivElement | null>(null);
+  const heroTextRef = useRef<HTMLDivElement | null>(null);
+  const profileWindowRef = useRef<HTMLDivElement | null>(null);
+  const profileTextRef = useRef<HTMLDivElement | null>(null);
+  const sharedFigureRef = useRef<HTMLDivElement | null>(null);
+  const figureSlotRef = useRef<HTMLDivElement | null>(null);
+  const photoRevealRef = useRef<HTMLDivElement | null>(null);
+  const revealLineRef = useRef<HTMLDivElement | null>(null);
   const watermarkRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
   const topHighlights = profileHighlights.slice(0, 3);
@@ -121,88 +127,80 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
     const context = gsap.context(() => {
       const section = sectionRef.current;
-      const text = textRef.current;
-      const bio = bioRef.current;
-      const keyboard = keyboardRef.current;
+      const heroWindow = heroWindowRef.current;
+      const heroText = heroTextRef.current;
+      const profileWindow = profileWindowRef.current;
+      const profileText = profileTextRef.current;
+      const sharedFigure = sharedFigureRef.current;
+      const figureSlot = figureSlotRef.current;
+      const photoReveal = photoRevealRef.current;
+      const revealLine = revealLineRef.current;
       const watermark = watermarkRef.current;
 
-      if (!section || !text || !bio || !keyboard || !watermark) {
+      if (
+        !section ||
+        !heroWindow ||
+        !heroText ||
+        !profileWindow ||
+        !profileText ||
+        !sharedFigure ||
+        !figureSlot ||
+        !photoReveal ||
+        !revealLine ||
+        !watermark
+      ) {
         return;
       }
-
-      gsap.set([text, keyboard, watermark], {
-        force3D: true,
-        transformPerspective: 1200,
-        willChange: "transform",
-      });
-      gsap.set(bio, {
-        autoAlpha: 0.16,
-        y: 18,
-        filter: "blur(10px)",
-        willChange: "transform, opacity, filter",
-      });
 
       const media = gsap.matchMedia();
 
       media.add("(min-width: 1024px)", () => {
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "bottom bottom",
-            fastScrollEnd: true,
-            invalidateOnRefresh: true,
-            scrub: 1.8,
-          },
+        const getFigureMotion = () => {
+          const start = sharedFigure.getBoundingClientRect();
+          const target = figureSlot.getBoundingClientRect();
+
+          const startCenterX = start.left + start.width / 2;
+          const startCenterY = start.top + start.height / 2;
+          const targetCenterX = target.left + target.width / 2;
+          const targetCenterY = target.top + target.height / 2;
+
+          return {
+            x: targetCenterX - startCenterX,
+            y: targetCenterY - startCenterY,
+            scale: target.width / start.width,
+          };
+        };
+
+        gsap.set([heroText, sharedFigure, watermark], {
+          force3D: true,
+          transformPerspective: 1200,
+          willChange: "transform",
         });
+        gsap.set(heroWindow, { autoAlpha: 1 });
+        gsap.set(profileWindow, { autoAlpha: 0 });
+        gsap.set(profileText, {
+          autoAlpha: 0,
+          x: -52,
+          filter: "blur(10px)",
+          willChange: "transform, opacity, filter",
+        });
+        gsap.set(photoReveal, {
+          clipPath: "inset(0 0 100% 0)",
+          willChange: "clip-path",
+        });
+        gsap.set(revealLine, {
+          autoAlpha: 0,
+          y: 0,
+          willChange: "transform, opacity",
+        });
+        gsap.set(sharedFigure, { x: 0, y: 0, scale: 1, autoAlpha: 1 });
 
-        timeline
-          .to(
-            bio,
-            {
-              autoAlpha: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: HERO_BIO_FADE_DURATION,
-              ease: "none",
-            },
-            HERO_BIO_FADE_START,
-          )
-          .to(
-            text,
-            {
-              yPercent: -42,
-              ease: "none",
-            },
-            0,
-          )
-          .to(
-            keyboard,
-            {
-              x: () => window.innerWidth * 0.3,
-              yPercent: -10,
-              rotate: -5.5,
-              scale: 0.98,
-              ease: "none",
-            },
-            0,
-          )
-          .to(
-            watermark,
-            {
-              yPercent: -18,
-              ease: "none",
-            },
-            0,
-          );
-      });
-
-      media.add("(max-width: 1023px)", () => {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             start: "top top",
             end: "bottom bottom",
+            pin: false,
             fastScrollEnd: true,
             invalidateOnRefresh: true,
             scrub: 1.3,
@@ -211,24 +209,109 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
         timeline
           .to(
-            bio,
-            {
-              autoAlpha: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: HERO_BIO_FADE_DURATION,
-              ease: "none",
-            },
-            HERO_BIO_FADE_START,
-          )
-          .to(
-            text,
+            heroText,
             {
               yPercent: -18,
+              autoAlpha: 0.22,
               ease: "none",
             },
             0,
+          )
+          .to(
+            heroWindow,
+            {
+              autoAlpha: 0.08,
+              ease: "none",
+            },
+            0.2,
+          )
+          .to(
+            profileWindow,
+            {
+              autoAlpha: 1,
+              ease: "none",
+            },
+            0.26,
+          )
+          .to(
+            profileText,
+            {
+              autoAlpha: 1,
+              x: 0,
+              filter: "blur(0px)",
+              duration: HERO_BIO_FADE_DURATION + 0.16,
+              ease: "none",
+            },
+            0.34,
+          )
+          .to(
+            sharedFigure,
+            {
+              x: () => getFigureMotion().x,
+              y: () => getFigureMotion().y,
+              scale: () => getFigureMotion().scale,
+              ease: "none",
+            },
+            0.22,
+          )
+          .to(
+            watermark,
+            {
+              yPercent: -22,
+              autoAlpha: 0.22,
+              ease: "none",
+            },
+            0,
+          )
+          .to(
+            revealLine,
+            {
+              autoAlpha: 1,
+              ease: "none",
+            },
+            0.68,
+          )
+          .to(
+            photoReveal,
+            {
+              clipPath: "inset(0 0 0% 0)",
+              ease: "none",
+            },
+            0.7,
+          )
+          .to(
+            revealLine,
+            {
+              y: () => figureSlot.getBoundingClientRect().height - 2,
+              ease: "none",
+            },
+            0.7,
+          )
+          .to(
+            sharedFigure,
+            {
+              autoAlpha: 0.12,
+              ease: "none",
+            },
+            0.78,
           );
+      });
+
+      media.add("(max-width: 1023px)", () => {
+        gsap.set([heroText, watermark], {
+          clearProps: "transform,willChange,opacity",
+        });
+        gsap.set(heroWindow, { autoAlpha: 1, clearProps: "opacity" });
+        gsap.set(profileWindow, { autoAlpha: 1, clearProps: "opacity" });
+        gsap.set(profileText, {
+          autoAlpha: 1,
+          x: 0,
+          filter: "blur(0px)",
+          clearProps: "willChange",
+        });
+        gsap.set(sharedFigure, { clearProps: "transform,opacity,willChange" });
+        gsap.set(photoReveal, { clipPath: "inset(0 0 0% 0)", clearProps: "willChange" });
+        gsap.set(revealLine, { autoAlpha: 0, y: 0, clearProps: "willChange" });
       });
 
       return () => {
@@ -251,8 +334,8 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
   return (
     <div className="space-y-0 md:space-y-0">
       <section className="page-section relative left-1/2 z-30 -mt-10 w-screen -translate-x-1/2 md:-mt-37 md:mb-0">
-        <div ref={sectionRef} className="min-h-[148vh] lg:min-h-[210vh]">
-          <div className="sticky top-0 min-h-screen overflow-visible bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-14 sm:pt-18 lg:h-screen lg:pt-10">
+        <div ref={sectionRef} className="min-h-[178vh] lg:min-h-[300vh]">
+          <div className="sticky top-0 min-h-screen overflow-hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-14 sm:pt-18 lg:h-screen lg:pt-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.12),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.06),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_24%)]" />
 
             <div
@@ -263,8 +346,8 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
               <div className="-mt-4 ml-[12vw]">Gangwar</div>
             </div>
 
-            <div className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:px-10 lg:pb-10 lg:pt-8">
-              <div ref={textRef} className="relative flex max-w-[640px] flex-col justify-between gap-4 lg:py-6">
+            <div ref={heroWindowRef} className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:px-10 lg:pb-10 lg:pt-8">
+              <div ref={heroTextRef} className="relative flex max-w-[680px] flex-col justify-between gap-4 lg:py-6">
                 <div className="space-y-4">
                   <Badge className="w-fit rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--page-base)_55%,rgba(255,255,255,0.2)),color-mix(in_srgb,var(--accent-secondary)_10%,transparent)_100%)] px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--accent-secondary)_58%,var(--text-strong))] shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
                     HI! I AM
@@ -278,50 +361,43 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                       {profileIntro.title}
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-                    <Link
-                      href="/projects"
-                      className={cn(
-                        buttonVariants({ variant: "outline", size: "lg" }),
-                        "group w-full justify-center border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(140deg,color-mix(in_srgb,var(--page-base)_80%,transparent),color-mix(in_srgb,var(--text-strong)_4%,transparent))] text-[color:var(--text-strong)] shadow-[0_16px_34px_rgba(11,10,20,0.08)] hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_44%,transparent)] hover:bg-[linear-gradient(140deg,color-mix(in_srgb,var(--accent-secondary)_12%,transparent),color-mix(in_srgb,var(--page-base)_74%,transparent))] sm:w-auto",
-                      )}
-                    >
-                      <span>Explore Projects</span>
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </Link>
-                    <Link
-                      href="/resume"
-                      className="group inline-block h-14 w-full min-w-[11.5rem] rounded-full shadow-[0_22px_48px_rgba(137,94,182,0.18)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f6d2ff]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:w-auto"
-                    >
-                      <GlassSurface
-                        width="100%"
-                        height="100%"
-                        borderRadius={999}
-                        backgroundOpacity={0.1}
-                        brightness={66}
-                        opacity={0.92}
-                        blur={10}
-                        displace={1.1}
-                        saturation={1.2}
-                        distortionScale={-140}
-                        greenOffset={8}
-                        blueOffset={14}
-                        mixBlendMode="screen"
-                        className="h-full w-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(246,210,255,0.08)_42%,rgba(255,255,255,0.04)_100%)] text-[color:var(--text-strong)] transition-[transform,box-shadow,border-color] duration-300 group-hover:border-[#f6d2ff]/40 group-hover:shadow-[0_26px_58px_rgba(137,94,182,0.24)]"
+                      <Link
+                        href="/projects"
+                        className={cn(
+                          buttonVariants({ variant: "outline", size: "lg" }),
+                          "group w-full justify-center border-[color:color-mix(in_srgb,var(--text-strong)_12%,transparent)] bg-[linear-gradient(140deg,color-mix(in_srgb,var(--page-base)_80%,transparent),color-mix(in_srgb,var(--text-strong)_4%,transparent))] text-[color:var(--text-strong)] shadow-[0_16px_34px_rgba(11,10,20,0.08)] hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_44%,transparent)] hover:bg-[linear-gradient(140deg,color-mix(in_srgb,var(--accent-secondary)_12%,transparent),color-mix(in_srgb,var(--page-base)_74%,transparent))] sm:w-auto",
+                        )}
                       >
-                        <span className="inline-flex items-center justify-center px-6 text-sm font-medium tracking-[0.08em] text-[color:var(--text-strong)]">
-                          Open Resume
-                        </span>
-                      </GlassSurface>
-                    </Link>
+                        <span>Explore Projects</span>
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </Link>
+                      <Link
+                        href="/resume"
+                        className="group inline-block h-14 w-full min-w-[11.5rem] rounded-full shadow-[0_22px_48px_rgba(137,94,182,0.18)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f6d2ff]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:w-auto"
+                      >
+                        <GlassSurface
+                          width="100%"
+                          height="100%"
+                          borderRadius={999}
+                          backgroundOpacity={0.1}
+                          brightness={66}
+                          opacity={0.92}
+                          blur={10}
+                          displace={1.1}
+                          saturation={1.2}
+                          distortionScale={-140}
+                          greenOffset={8}
+                          blueOffset={14}
+                          mixBlendMode="screen"
+                          className="h-full w-full border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(246,210,255,0.08)_42%,rgba(255,255,255,0.04)_100%)] text-[color:var(--text-strong)] transition-[transform,box-shadow,border-color] duration-300 group-hover:border-[#f6d2ff]/40 group-hover:shadow-[0_26px_58px_rgba(137,94,182,0.24)]"
+                        >
+                          <span className="inline-flex items-center justify-center px-6 text-sm font-medium tracking-[0.08em] text-[color:var(--text-strong)]">
+                            Open Resume
+                          </span>
+                        </GlassSurface>
+                      </Link>
+                    </div>
                   </div>
-                    <p
-                      ref={bioRef}
-                      className="max-w-xl min-h-[5.5rem] text-[13px] leading-6 text-[color:var(--text-faint)] md:min-h-[8.5rem] md:text-base md:leading-7"
-                    >
-                      {profileIntro.shortBio}
-                    </p>
-                  </div>
-                  
                 </div>
 
                 <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
@@ -344,24 +420,122 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                 </div>
               </div>
 
-              <div className="relative hidden lg:block">
-                <p className="absolute right-6 top-6 z-30 max-w-[300px] text-right text-sm uppercase tracking-[0.28em] text-[color:var(--text-faint)]">
-                  Scroll to shift the interface.
-                </p>
+              <div className="relative hidden lg:block" />
+            </div>
+
+            <div
+              ref={profileWindowRef}
+              className="pointer-events-none absolute inset-0 z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:px-10 lg:pb-10 lg:pt-8"
+            >
+              <div className="flex items-center">
+                <div
+                  ref={profileTextRef}
+                  className="pointer-events-auto max-w-[620px] space-y-6 rounded-[32px] border border-[color:color-mix(in_srgb,var(--panel-border)_88%,transparent)] bg-[color:color-mix(in_srgb,var(--hero-panel-bg)_92%,transparent)] px-6 py-7 shadow-[0_30px_90px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-8 md:py-9"
+                >
+                  <p className="text-[11px] uppercase tracking-[0.34em] text-[color:var(--text-faint)]">
+                    About Me
+                  </p>
+                  <h2 className="display text-[clamp(2.2rem,5vw,4.4rem)] font-semibold uppercase leading-[0.94] tracking-[-0.06em] text-[color:var(--text-strong)]">
+                    Backend-first,
+                    <span className="block text-[color:var(--text-soft)]">product-minded, quietly obsessive.</span>
+                  </h2>
+                  <div className="space-y-4 text-sm leading-7 text-[color:var(--text-soft)] md:text-base">
+                    {landingShortBioParagraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative hidden lg:flex lg:items-center lg:justify-center">
+                <div
+                  ref={figureSlotRef}
+                  className="relative h-[34rem] w-[28rem] overflow-hidden rounded-[36px] border border-[color:color-mix(in_srgb,var(--panel-border)_86%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_16%,transparent),color-mix(in_srgb,var(--hero-panel-bg)_78%,transparent))] shadow-[0_32px_90px_rgba(0,0,0,0.2)]"
+                >
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_16%,transparent_84%,rgba(255,255,255,0.04))]" />
+                  <div className="absolute inset-x-5 top-5 bottom-5 rounded-[28px] border border-[color:color-mix(in_srgb,var(--panel-border)_72%,transparent)]" />
+                  <div
+                    ref={photoRevealRef}
+                    className="absolute inset-x-5 top-5 bottom-5 overflow-hidden rounded-[28px]"
+                  >
+                    <Image
+                      src={akshitPhoto}
+                      alt="Akshit Gangwar"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(min-width: 1024px) 28rem, 100vw"
+                      priority
+                    />
+                  </div>
+                  <div
+                    ref={revealLineRef}
+                    className="absolute inset-x-5 top-5 h-[3px] rounded-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.96)_18%,rgba(255,132,111,0.96)_52%,rgba(255,255,255,0.96)_82%,transparent)] shadow-[0_0_28px_rgba(255,141,111,0.5)]"
+                  />
+                </div>
               </div>
             </div>
 
             <div
-              ref={keyboardRef}
-              className="pointer-events-none absolute left-[79%] top-[44%] z-30 hidden w-[min(104vw,1320px)] -translate-x-1/2 -translate-y-1/2 select-none will-change-transform lg:block"
+              ref={sharedFigureRef}
+              className="pointer-events-none absolute right-[-14vw] top-[7vh] z-30 hidden h-[86vh] w-[48vw] min-w-[640px] lg:block"
             >
-              <div className="origin-center scale-[0.42] sm:scale-[0.5] md:scale-[0.64] lg:scale-[0.82] xl:scale-[0.96] 2xl:scale-[1.06]">
-                <Keyboard className="drop-shadow-[0_45px_90px_rgba(0,0,0,0.28)]" />
+              <div className="relative h-full w-full overflow-hidden">
+                <Image
+                  src={akshitFigure}
+                  alt="Akshit action figure"
+                  fill
+                  className="object-contain object-left-top scale-[1.58] translate-x-[-18%] translate-y-[4%]"
+                  sizes="48vw"
+                  priority
+                />
               </div>
             </div>
-            <div className="pointer-events-none absolute right-[-40%] top-[58%] z-20 block w-[560px] -translate-y-1/2 select-none opacity-[0.82] lg:hidden">
-              <div className="origin-top-right scale-[0.16] sm:scale-[0.21]">
-                <Keyboard className="drop-shadow-[0_35px_70px_rgba(0,0,0,0.24)]" />
+
+            <div className="absolute inset-x-0 bottom-10 z-20 px-4 md:px-8 lg:hidden">
+              <div className="mx-auto grid max-w-[640px] gap-6 rounded-[28px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--hero-panel-bg)_90%,transparent)] p-5 shadow-[0_28px_70px_rgba(0,0,0,0.16)] backdrop-blur-xl">
+                <div className="grid grid-cols-[0.92fr_1.08fr] items-center gap-4">
+                  <div className="relative aspect-[0.75] overflow-hidden rounded-[22px] border border-[color:var(--panel-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_22%,transparent),color-mix(in_srgb,var(--hero-panel-bg)_82%,transparent))]">
+                    <Image
+                      src={akshitFigure}
+                      alt="Akshit action figure"
+                      fill
+                      className="object-contain object-center p-3"
+                      sizes="40vw"
+                      priority
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <p className="text-[11px] uppercase tracking-[0.34em] text-[color:var(--text-faint)]">
+                      About Me
+                    </p>
+                    <h2 className="text-2xl font-semibold uppercase leading-[0.95] tracking-[-0.05em] text-[color:var(--text-strong)]">
+                      Systems with
+                      <span className="block text-[color:var(--text-soft)]">product instinct.</span>
+                    </h2>
+                  </div>
+                </div>
+                <div className="space-y-3 text-sm leading-6 text-[color:var(--text-soft)]">
+                  {landingShortBioParagraphs.slice(0, 2).map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+                <div className="relative aspect-[1.05] overflow-hidden rounded-[24px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--page-base)_28%,transparent)]">
+                  <Image
+                    src={akshitPhoto}
+                    alt="Akshit Gangwar"
+                    fill
+                    className="object-cover object-center"
+                    sizes="90vw"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-20 mx-auto hidden h-full w-full max-w-[1500px] px-4 pb-8 pt-5 md:px-8 lg:block lg:px-10 lg:pb-10 lg:pt-8">
+              <div className="relative hidden lg:block">
+                <p className="absolute right-6 top-6 z-30 max-w-[300px] text-right text-sm uppercase tracking-[0.28em] text-[color:var(--text-faint)]">
+                  Scroll to move through the profile reveal.
+                </p>
               </div>
             </div>
           </div>
@@ -391,33 +565,33 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
             <div className="grid gap-10 xl:grid-cols-[minmax(0,1.14fr)_minmax(360px,0.86fr)] xl:items-start">
               <div className="xl:sticky xl:top-24">
                 <div className="mx-auto flex w-full max-w-full flex-col items-center overflow-x-clip xl:mx-0 xl:items-start xl:overflow-visible">
-                <MacbookScroll
-                  badge={<InitialBadge />}
-                  hideTitle
-                  showGradient={false}
-                  screenHref="https://falak.mitblr.in"
-                  src={falakHomepagePreview.src}
-                  title={macbookTitle}
-                  className="mx-auto min-h-[76vh] w-full max-w-[100vw] scale-[0.2] py-0 sm:min-h-[92vh] sm:scale-[0.29] md:min-h-[112vh] md:scale-[0.44] lg:min-h-[132vh] lg:scale-[0.62] xl:min-h-[auto] xl:max-w-none xl:scale-[0.72] 2xl:scale-[0.82]"
-                  backPanelClassName="h-[18rem] w-[52rem]"
-                  frontPanelClassName="h-[30rem] w-[52rem]"
-                  baseClassName="h-[35.75rem] w-[52rem]"
-                  screenFit="contain"
-                  lidTilt={-31}
-                  rotateRange={[-28, 0]}
-                  imageClassName="p-1.5"
-                />
-                <div className="-mt-20 flex justify-center sm:-mt-16 md:-mt-12 lg:-mt-8 xl:-mt-2">
-                  <a
-                    href="https://falak.mitblr.in"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-full border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--page-base)_74%,transparent)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[color:var(--text-soft)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_44%,transparent)] hover:text-[color:var(--text-strong)]"
-                  >
-                    Visit Falak
-                    <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </a>
-                </div>
+                  <MacbookScroll
+                    badge={<InitialBadge />}
+                    hideTitle
+                    showGradient={false}
+                    screenHref="https://falak.mitblr.in"
+                    src={falakHomepagePreview.src}
+                    title={macbookTitle}
+                    className="mx-auto min-h-[82vh] w-full max-w-[100vw] scale-[0.23] py-0 sm:min-h-[98vh] sm:scale-[0.33] md:min-h-[116vh] md:scale-[0.48] lg:min-h-[132vh] lg:scale-[0.62] xl:min-h-[auto] xl:max-w-none xl:scale-[0.72] 2xl:scale-[0.82]"
+                    backPanelClassName="h-[18rem] w-[52rem]"
+                    frontPanelClassName="h-[30rem] w-[52rem]"
+                    baseClassName="h-[35.75rem] w-[52rem]"
+                    screenFit="contain"
+                    lidTilt={-31}
+                    rotateRange={[-28, 0]}
+                    imageClassName="p-1.5"
+                  />
+                  <div className="-mt-34 flex justify-center sm:-mt-26 md:-mt-14 lg:-mt-8 xl:-mt-10 2xl:-mt-6">
+                    <a
+                      href="https://falak.mitblr.in"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-center gap-2 rounded-full border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--page-base)_74%,transparent)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[color:var(--text-soft)] transition hover:border-[color:color-mix(in_srgb,var(--accent-secondary)_44%,transparent)] hover:text-[color:var(--text-strong)]"
+                    >
+                      Visit Falak
+                      <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -518,7 +692,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                     )}
                   >
                     <Meteors
-                      number={20}
+                      number={12}
                       className={cn(
                         project.themeTag === "football" &&
                           "bg-[color:color-mix(in_srgb,var(--accent)_72%,white)] before:from-[color:color-mix(in_srgb,var(--accent)_74%,transparent)]",
@@ -530,7 +704,6 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                     />
                     <div className="relative z-10">
                       <div className="flex items-center justify-between gap-4">
-                        
                         <span className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-faint)]">
                           {project.impact}
                         </span>
