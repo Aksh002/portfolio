@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -111,11 +111,13 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
   const profileWindowRef = useRef<HTMLDivElement | null>(null);
   const profileTextRef = useRef<HTMLDivElement | null>(null);
   const sharedFigureRef = useRef<HTMLDivElement | null>(null);
+  const figureInnerRef = useRef<HTMLDivElement | null>(null);
   const figureSlotRef = useRef<HTMLDivElement | null>(null);
   const photoRevealRef = useRef<HTMLDivElement | null>(null);
   const revealLineRef = useRef<HTMLDivElement | null>(null);
   const watermarkRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [mobileCardFlipped, setMobileCardFlipped] = useState(false);
   const topHighlights = profileHighlights.slice(0, 3);
 
   useLayoutEffect(() => {
@@ -132,6 +134,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
       const profileWindow = profileWindowRef.current;
       const profileText = profileTextRef.current;
       const sharedFigure = sharedFigureRef.current;
+      const figureInner = figureInnerRef.current;
       const figureSlot = figureSlotRef.current;
       const photoReveal = photoRevealRef.current;
       const revealLine = revealLineRef.current;
@@ -144,6 +147,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
         !profileWindow ||
         !profileText ||
         !sharedFigure ||
+        !figureInner ||
         !figureSlot ||
         !photoReveal ||
         !revealLine ||
@@ -171,7 +175,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
           };
         };
 
-        gsap.set([heroText, sharedFigure, watermark], {
+        gsap.set([heroText, sharedFigure, figureInner, watermark], {
           force3D: true,
           transformPerspective: 1200,
           willChange: "transform",
@@ -247,9 +251,19 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
           .to(
             sharedFigure,
             {
-              x: () => getFigureMotion().x,
+              x: () => getFigureMotion().x - 20,
               y: () => getFigureMotion().y,
               scale: () => getFigureMotion().scale,
+              ease: "none",
+            },
+            0.22,
+          )
+          .to(
+            figureInner,
+            {
+              xPercent: 0,
+              yPercent: 0,
+              scale: 1,
               ease: "none",
             },
             0.22,
@@ -287,13 +301,12 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
             },
             0.7,
           )
-          .to(
+          .set(
             sharedFigure,
             {
-              autoAlpha: 0.12,
-              ease: "none",
+              zIndex: 10,
             },
-            0.78,
+            0.7,
           );
       });
 
@@ -310,6 +323,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
           clearProps: "willChange",
         });
         gsap.set(sharedFigure, { clearProps: "transform,opacity,willChange" });
+        gsap.set(figureInner, { clearProps: "transform,willChange" });
         gsap.set(photoReveal, { clipPath: "inset(0 0 0% 0)", clearProps: "willChange" });
         gsap.set(revealLine, { autoAlpha: 0, y: 0, clearProps: "willChange" });
       });
@@ -334,30 +348,30 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
   return (
     <div className="space-y-0 md:space-y-0">
       <section className="page-section relative left-1/2 z-30 -mt-10 w-screen -translate-x-1/2 md:-mt-37 md:mb-0">
-        <div ref={sectionRef} className="min-h-[178vh] lg:min-h-[300vh]">
-          <div className="sticky top-0 min-h-screen overflow-hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pt-14 sm:pt-18 lg:h-screen lg:pt-10">
+        <div ref={sectionRef} className="min-h-[auto] lg:min-h-[300vh]">
+          <div className="relative min-h-[100svh] overflow-hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_84%,transparent),color-mix(in_srgb,var(--page-mid)_72%,transparent))] pb-10 pt-14 sm:pt-18 lg:sticky lg:top-0 lg:h-screen lg:min-h-screen lg:pb-0 lg:pt-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.12),transparent_24%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.06),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_24%)]" />
 
             <div
               ref={watermarkRef}
-              className="hero-watermark pointer-events-none absolute inset-x-0 bottom-[-4%] z-[1] block px-3 text-[clamp(3.8rem,28vw,21rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)] sm:bottom-[-6%] sm:px-4 sm:text-[clamp(5rem,23vw,21rem)]"
+              className="hero-watermark pointer-events-none absolute inset-x-0 bottom-[86%] z-[1] block px-3 text-[clamp(4.5rem,26vw,9rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em] text-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] sm:bottom-[8%] sm:px-4 sm:text-[clamp(6rem,24vw,12rem)] lg:bottom-[-4%] lg:text-[clamp(3.8rem,28vw,21rem)] lg:text-[color:color-mix(in_srgb,var(--text-strong)_14%,transparent)]"
             >
               <div>Akshit</div>
               <div className="-mt-4 ml-[12vw]">Gangwar</div>
             </div>
 
-            <div ref={heroWindowRef} className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:px-10 lg:pb-10 lg:pt-8">
-              <div ref={heroTextRef} className="relative flex max-w-[680px] flex-col justify-between gap-4 lg:py-6">
+            <div ref={heroWindowRef} className="relative z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 gap-8 px-4 pb-0 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:px-10 lg:pb-10 lg:pt-8">
+              <div ref={heroTextRef} className="relative flex max-w-[680px] flex-col justify-between gap-5 lg:py-6">
                 <div className="space-y-4">
                   <Badge className="w-fit rounded-full border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--page-base)_55%,rgba(255,255,255,0.2)),color-mix(in_srgb,var(--accent-secondary)_10%,transparent)_100%)] px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--accent-secondary)_58%,var(--text-strong))] shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
                     HI! I AM
                   </Badge>
                   <div className="space-y-4">
-                    <h1 className="display text-[clamp(2.65rem,15vw,7.8rem)] font-semibold uppercase leading-[0.9] tracking-[-0.07em] text-[color:var(--text-strong)]">
+                    <h1 className="display text-[clamp(2.85rem,14vw,7.8rem)] font-semibold uppercase leading-[0.9] tracking-[-0.07em] text-[color:var(--text-strong)]">
                       <span className="block">Akshit</span>
                       <span className="block text-[color:var(--text-soft)]">Gangwar</span>
                     </h1>
-                    <p className="max-w-md text-[15px] leading-7 text-[color:var(--text-soft)] md:text-lg">
+                    <p className="max-w-md text-sm leading-6 text-[color:var(--text-soft)] md:text-lg md:leading-7">
                       {profileIntro.title}
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -400,12 +414,14 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                   </div>
                 </div>
 
+                
+
                 <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
                   {topHighlights.map((item, index) => (
                     <div
                       key={item.label}
                       className={cn(
-                        "rounded-[20px] border border-[color:var(--panel-border)] bg-[color:var(--hero-panel-bg)] px-3.5 py-3.5 backdrop-blur-md sm:rounded-[24px] sm:px-4 sm:py-4",
+                        "rounded-[20px] border border-[color:var(--panel-border)] bg-[color:var(--hero-panel-bg)] px-3 py-3 backdrop-blur-md sm:rounded-[24px] sm:px-4 sm:py-4",
                         index === topHighlights.length - 1 && "col-span-2 sm:col-span-1",
                       )}
                     >
@@ -425,7 +441,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
             <div
               ref={profileWindowRef}
-              className="pointer-events-none absolute inset-0 z-20 mx-auto grid h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:px-10 lg:pb-10 lg:pt-8"
+              className="pointer-events-none absolute inset-0 z-20 mx-auto hidden h-full w-full max-w-[1500px] grid-cols-1 px-4 pb-8 pt-5 md:px-8 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:px-10 lg:pb-10 lg:pt-8"
             >
               <div className="flex items-center">
                 <div
@@ -477,56 +493,81 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
             <div
               ref={sharedFigureRef}
-              className="pointer-events-none absolute right-[-14vw] top-[7vh] z-30 hidden h-[86vh] w-[48vw] min-w-[640px] lg:block"
+              className="pointer-events-none absolute right-[-20vw] top-[50vh] z-30 hidden h-[88vh] w-[52vw] min-w-[700px] lg:block"
             >
-              <div className="relative h-full w-full overflow-hidden">
+              <div ref={figureInnerRef} className="relative h-full w-full overflow-visible scale-[3.00] translate-x-[18%] translate-y-[13%]">
                 <Image
                   src={akshitFigure}
                   alt="Akshit action figure"
                   fill
-                  className="object-contain object-left-top scale-[1.58] translate-x-[-18%] translate-y-[4%]"
-                  sizes="48vw"
+                  className="object-contain object-center"
+                  sizes="52vw"
                   priority
                 />
               </div>
             </div>
 
-            <div className="absolute inset-x-0 bottom-10 z-20 px-4 md:px-8 lg:hidden">
-              <div className="mx-auto grid max-w-[640px] gap-6 rounded-[28px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--hero-panel-bg)_90%,transparent)] p-5 shadow-[0_28px_70px_rgba(0,0,0,0.16)] backdrop-blur-xl">
-                <div className="grid grid-cols-[0.92fr_1.08fr] items-center gap-4">
-                  <div className="relative aspect-[0.75] overflow-hidden rounded-[22px] border border-[color:var(--panel-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_22%,transparent),color-mix(in_srgb,var(--hero-panel-bg)_82%,transparent))]">
-                    <Image
-                      src={akshitFigure}
-                      alt="Akshit action figure"
-                      fill
-                      className="object-contain object-center p-3"
-                      sizes="40vw"
-                      priority
-                    />
-                  </div>
+            <div className="relative z-20 px-4 pb-2 pt-8 md:px-8 lg:hidden">
+              <div className="mx-auto grid max-w-[640px] gap-5 rounded-[28px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--hero-panel-bg)_90%,transparent)] p-4 shadow-[0_28px_70px_rgba(0,0,0,0.16)] backdrop-blur-xl">
+                <div className="grid grid-cols-[minmax(0,1.1fr)_130px] items-center gap-4">
                   <div className="space-y-3">
                     <p className="text-[11px] uppercase tracking-[0.34em] text-[color:var(--text-faint)]">
                       About Me
                     </p>
-                    <h2 className="text-2xl font-semibold uppercase leading-[0.95] tracking-[-0.05em] text-[color:var(--text-strong)]">
+                    <h2 className="text-[1.65rem] font-semibold uppercase leading-[0.95] tracking-[-0.05em] text-[color:var(--text-strong)]">
                       Systems with
                       <span className="block text-[color:var(--text-soft)]">product instinct.</span>
                     </h2>
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[color:var(--text-faint)]">
+                      Tap the card to flip
+                    </p>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileCardFlipped((value) => !value)}
+                    className="group relative h-[10.5rem] w-full rounded-[22px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:color-mix(in_srgb,var(--accent-secondary)_44%,white)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                    aria-label={mobileCardFlipped ? "Show action figure side" : "Show real photo side"}
+                    aria-pressed={mobileCardFlipped}
+                    style={{ perspective: "1200px" }}
+                  >
+                    <div
+                      className="relative h-full w-full rounded-[22px] transition-transform duration-700 [transform-style:preserve-3d]"
+                      style={{
+                        transform: mobileCardFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0 overflow-hidden rounded-[22px] border border-[color:var(--panel-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_22%,transparent),color-mix(in_srgb,var(--hero-panel-bg)_82%,transparent))]"
+                        style={{ backfaceVisibility: "hidden" }}
+                      >
+                        <Image
+                          src={akshitFigure}
+                          alt="Akshit action figure"
+                          fill
+                          className="object-contain object-center p-3 transition-transform duration-500 group-active:scale-[0.98]"
+                          sizes="130px"
+                          priority
+                        />
+                      </div>
+                      <div
+                        className="absolute inset-0 overflow-hidden rounded-[22px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--page-base)_28%,transparent)]"
+                        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                      >
+                        <Image
+                          src={akshitPhoto}
+                          alt="Akshit Gangwar"
+                          fill
+                          className="object-cover object-center"
+                          sizes="130px"
+                        />
+                      </div>
+                    </div>
+                  </button>
                 </div>
                 <div className="space-y-3 text-sm leading-6 text-[color:var(--text-soft)]">
-                  {landingShortBioParagraphs.slice(0, 2).map((paragraph) => (
+                  {landingShortBioParagraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
-                </div>
-                <div className="relative aspect-[1.05] overflow-hidden rounded-[24px] border border-[color:var(--panel-border)] bg-[color:color-mix(in_srgb,var(--page-base)_28%,transparent)]">
-                  <Image
-                    src={akshitPhoto}
-                    alt="Akshit Gangwar"
-                    fill
-                    className="object-cover object-center"
-                    sizes="90vw"
-                  />
                 </div>
               </div>
             </div>
