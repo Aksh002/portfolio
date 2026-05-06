@@ -416,7 +416,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
 
                 
 
-                <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
+                {/* <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
                   {topHighlights.map((item, index) => (
                     <div
                       key={item.label}
@@ -433,7 +433,7 @@ export function LandingHeroShowcase({ featuredProjects }: { featuredProjects: Pr
                       </p>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
 
               <div className="relative hidden lg:block" />
