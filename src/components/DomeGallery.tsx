@@ -691,9 +691,8 @@ export default function DomeGallery({
       --rot-x: calc((360deg / var(--segments-y)) / 2);
       --item-width: calc(var(--circ) / var(--segments-x));
       --item-height: calc(var(--circ) / var(--segments-y));
-      background:
-        radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--overlay-blur-color) 18%, transparent), transparent 48%),
-        linear-gradient(180deg, color-mix(in srgb, var(--overlay-blur-color) 96%, #05050a), var(--overlay-blur-color));
+      --dg-stage-y: clamp(82px, 11vh, 148px);
+      background: transparent;
     }
     
     .sphere-root * { box-sizing: border-box; }
@@ -705,7 +704,7 @@ export default function DomeGallery({
       display: grid;
       place-items: center;
       position: absolute;
-      inset: 0;
+      inset: var(--dg-stage-y) 0;
       margin: auto;
       perspective: calc(var(--radius) * 2);
       perspective-origin: 50% 50%;
@@ -745,6 +744,12 @@ export default function DomeGallery({
         width: 100% !important;
       }
     }
+
+    @media (max-width: 768px) {
+      .sphere-root {
+        --dg-stage-y: clamp(58px, 9vh, 96px);
+      }
+    }
     
     // body.dg-scroll-lock {
     //   position: fixed !important;
@@ -775,39 +780,41 @@ export default function DomeGallery({
       pointer-events: none;
     }
 
-    .dg-edge-fade {
+    .dg-gallery-mask {
+      -webkit-mask-image: radial-gradient(ellipse 96% 86% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.92) 66%, rgba(0, 0, 0, 0.42) 86%, transparent 100%);
+      mask-image: radial-gradient(ellipse 96% 86% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.92) 66%, rgba(0, 0, 0, 0.42) 86%, transparent 100%);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+    }
+
+    .dg-transparent-vignette {
       position: absolute;
       inset: 0;
       z-index: 6;
       pointer-events: none;
-      box-shadow:
-        inset 0 0 0 1px color-mix(in srgb, white 10%, transparent),
-        inset 0 42px 88px color-mix(in srgb, var(--overlay-blur-color) 96%, transparent),
-        inset 0 -62px 118px color-mix(in srgb, var(--overlay-blur-color) 98%, transparent),
-        inset 90px 0 130px color-mix(in srgb, var(--overlay-blur-color) 94%, transparent),
-        inset -90px 0 130px color-mix(in srgb, var(--overlay-blur-color) 94%, transparent);
+      border-radius: inherit;
     }
 
-    .dg-edge-fade::before {
+    .dg-transparent-vignette::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at center, transparent 46%, color-mix(in srgb, var(--overlay-blur-color) 42%, transparent) 72%, var(--overlay-blur-color) 100%),
-        linear-gradient(90deg, var(--overlay-blur-color), transparent 16%, transparent 84%, var(--overlay-blur-color)),
-        linear-gradient(180deg, var(--overlay-blur-color), transparent 18%, transparent 76%, var(--overlay-blur-color));
-      opacity: 0.82;
+        radial-gradient(ellipse 80% 74% at 50% 48%, transparent 56%, color-mix(in srgb, var(--page-base, transparent) 16%, transparent) 78%, color-mix(in srgb, var(--page-base, transparent) 34%, transparent) 100%),
+        linear-gradient(180deg, color-mix(in srgb, var(--page-base, transparent) 18%, transparent), transparent 18%, transparent 78%, color-mix(in srgb, var(--page-base, transparent) 28%, transparent));
+      opacity: 0.52;
     }
 
-    .dg-edge-fade::after {
+    .dg-transparent-vignette::after {
       content: "";
       position: absolute;
-      inset: auto 4% 0;
-      height: 25%;
-      background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--overlay-blur-color) 90%, transparent) 56%, var(--overlay-blur-color));
-      filter: blur(14px);
-      opacity: 0.86;
-      transform: translateY(8%);
+      inset: auto 8% 0;
+      height: 22%;
+      background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--page-base, transparent) 32%, transparent));
+      filter: blur(18px);
+      opacity: 0.5;
     }
   `;
 
@@ -816,7 +823,7 @@ export default function DomeGallery({
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       <div
         ref={rootRef}
-        className="sphere-root relative h-full w-full overflow-hidden rounded-[24px] border border-[color:color-mix(in_srgb,var(--text-strong)_10%,transparent)] shadow-[0_26px_90px_color-mix(in_srgb,var(--text-strong)_14%,transparent)] md:rounded-[28px]"
+        className="sphere-root relative h-full w-full overflow-hidden"
         style={
           {
             ['--segments-x' as any]: segments,
@@ -830,7 +837,7 @@ export default function DomeGallery({
       >
         <main
           ref={mainRef}
-          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent"
+          className="dg-gallery-mask absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent"
           style={{
             touchAction: 'none',
             WebkitUserSelect: 'none'
@@ -906,32 +913,13 @@ export default function DomeGallery({
           <div
             className="absolute inset-0 m-auto z-[3] pointer-events-none"
             style={{
-              backgroundImage: `radial-gradient(ellipse at center, rgba(235, 235, 235, 0) 52%, color-mix(in srgb, var(--overlay-blur-color, ${overlayBlurColor}) 34%, transparent) 74%, var(--overlay-blur-color, ${overlayBlurColor}) 100%)`
+              WebkitMaskImage: `radial-gradient(ellipse 74% 68% at 50% 48%, transparent 58%, black 92%)`,
+              maskImage: `radial-gradient(ellipse 74% 68% at 50% 48%, transparent 58%, black 92%)`,
+              backdropFilter: 'blur(5px)',
+              opacity: 0.42
             }}
           />
-
-          <div
-            className="absolute inset-0 m-auto z-[3] pointer-events-none"
-            style={{
-              WebkitMaskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              maskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              backdropFilter: 'blur(5px)'
-            }}
-          />
-
-          <div
-            className="absolute left-0 right-0 top-0 h-[120px] z-[5] pointer-events-none rotate-180"
-            style={{
-              background: `linear-gradient(to bottom, transparent, color-mix(in srgb, var(--overlay-blur-color, ${overlayBlurColor}) 76%, transparent) 56%, var(--overlay-blur-color, ${overlayBlurColor}))`
-            }}
-          />
-          <div
-            className="absolute left-0 right-0 bottom-0 h-[180px] z-[5] pointer-events-none"
-            style={{
-              background: `linear-gradient(to bottom, transparent, color-mix(in srgb, var(--overlay-blur-color, ${overlayBlurColor}) 76%, transparent) 46%, var(--overlay-blur-color, ${overlayBlurColor}))`
-            }}
-          />
-          <div className="dg-edge-fade" />
+          <div className="dg-transparent-vignette" />
 
           <div
             ref={viewerRef}
