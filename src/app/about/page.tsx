@@ -13,6 +13,7 @@ import {
   profileIntro,
   skillGroups,
 } from "@/lib/site";
+import DomeGallery from "@/components/DomeGallery";
 
 export const metadata: Metadata = {
   title: "About",
@@ -22,12 +23,12 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageShell className="space-y-14 md:space-y-20">
-      <Reveal>
+      <Reveal variant="hero" staggerSelector="[data-mount]">
         <section className="relative overflow-hidden rounded-[34px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--page-base)_84%,rgba(7,10,18,0.96)),color-mix(in_srgb,var(--page-mid)_76%,rgba(10,11,20,0.92))_42%,color-mix(in_srgb,var(--page-end)_66%,rgba(16,12,28,0.88))_100%)] px-4 py-5 shadow-[0_24px_70px_color-mix(in_srgb,var(--text-strong)_12%,transparent)] md:rounded-[42px] md:px-8 md:py-9 lg:px-10 lg:py-10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,color-mix(in_srgb,var(--accent-secondary)_14%,transparent),transparent_26%),radial-gradient(circle_at_82%_20%,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_24%),linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_8%,transparent),transparent_34%,color-mix(in_srgb,var(--page-base)_28%,transparent)_100%)]" />
           <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(300px,0.92fr)] lg:items-center">
             <div className="space-y-5 md:space-y-7">
-              <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_58%,transparent)]">
+              <div data-mount className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_58%,transparent)]">
                 <span>Profile / About</span>
                 <span className="h-px w-10 bg-[color:color-mix(in_srgb,var(--text-strong)_16%,transparent)]" />
                 <span className="inline-flex items-center gap-1.5">
@@ -37,11 +38,11 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-4">
-                <h1 className="display max-w-[11ch] text-[clamp(2.4rem,10vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.065em] text-[color:var(--text-strong)]">
+                <h1 data-mount className="display max-w-[11ch] text-[clamp(2.4rem,10vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.065em] text-[color:var(--text-strong)]">
                   The engineer behind the atmosphere.
                 </h1>
                 
-                <div className="relative mx-auto flex w-full justify-center lg:justify-center">
+                <div data-mount className="relative mx-auto flex w-full justify-center lg:justify-center">
                   <CometCardDemo className="mx-auto " />
                 </div>
               </div>
@@ -49,16 +50,16 @@ export default function AboutPage() {
 
             <div className="max-w-[44rem] space-y-4 text-[15px] leading-7 text-[color:color-mix(in_srgb,var(--text-strong)_74%,transparent)] md:text-[1.08rem] md:leading-8">
               {aboutBioParagraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p data-mount key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </div>
         </section>
       </Reveal>
 
-      <Reveal className="space-y-8">
+      <Reveal className="space-y-8" variant="panel" staggerSelector="[data-mount]">
         <div className="space-y-5">
-          <div className="space-y-3 xl:pr-3">
+          <div data-mount className="space-y-3 xl:pr-3">
             <p className="text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
               Skills / Capability map
             </p>
@@ -90,6 +91,7 @@ export default function AboutPage() {
             return (
               <section
                 key={group.category}
+                data-mount
                 className="group relative min-h-[24rem] overflow-hidden rounded-[26px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--page-base)_88%,rgba(255,255,255,0.58)),color-mix(in_srgb,var(--page-mid)_78%,rgba(255,255,255,0.24)))] p-4 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md md:min-h-[28rem] md:rounded-[30px] md:p-5"
               >
                 <div className="absolute inset-0">
@@ -135,12 +137,12 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      <Reveal className="space-y-8">
+      <Reveal className="space-y-8" variant="gallery">
         <AboutInterestsPlayer />
       </Reveal>
 
-      <Reveal className="space-y-8">
-        <div className="space-y-3">
+      <Reveal className="space-y-8" variant="panel" staggerSelector="[data-mount]">
+        <div data-mount className="space-y-3">
           <p className="text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
             Experience / Execution
           </p>
@@ -156,6 +158,7 @@ export default function AboutPage() {
           {experienceItems.map((item) => (
             <section
               key={`${item.company}-${item.role}`}
+              data-mount
               className="relative overflow-hidden rounded-[26px] border border-[color:color-mix(in_srgb,var(--text-strong)_9%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_5%,rgba(255,255,255,0.28)),color-mix(in_srgb,var(--background)_2%,rgba(255,255,255,0.08)))] p-4 shadow-[0_18px_48px_color-mix(in_srgb,var(--text-strong)_8%,transparent)] backdrop-blur-md md:rounded-[32px] md:p-6"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_28%),radial-gradient(circle_at_80%_24%,color-mix(in_srgb,var(--accent-secondary)_10%,transparent),transparent_30%)]" />
@@ -210,6 +213,32 @@ export default function AboutPage() {
             </section>
           ))}
         </div>
+
+        <Reveal className="space-y-5 pt-4" variant="gallery" staggerSelector="[data-mount]">
+          <div className="relative w-screen space-y-5">
+            <div data-mount className="w-full max-w-[1280px] space-y-3 px-4 md:px-6">
+              <p className="text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
+                Gallery / Visual archive
+              </p>
+              <h2 className="display max-w-[12ch] text-[clamp(2.3rem,4.4vw,4.8rem)] font-semibold uppercase leading-[0.92] tracking-[-0.06em] text-[color:var(--text-strong)]">
+                A curved wall of references and fragments.
+              </h2>
+            </div>
+            <div data-mount className="h-[min(70vh,620px)] min-h-[460px] w-screen px-1 sm:px-3 md:h-[min(80vh,720px)] md:min-h-[560px]">
+              <DomeGallery
+                fit={0.88}
+                fitBasis="width"
+                minRadius={360}
+                maxRadius={980}
+                padFactor={0.14}
+                overlayBlurColor="color-mix(in srgb, var(--page-base) 92%, #08070d)"
+                openedImageWidth="min(76vw,520px)"
+                openedImageHeight="min(76vw,520px)"
+                grayscale={false}
+              />
+            </div>
+          </div>
+        </Reveal>
       </Reveal>
     </PageShell>
   );
