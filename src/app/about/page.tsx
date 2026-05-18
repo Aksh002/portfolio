@@ -218,19 +218,19 @@ export default function AboutPage() {
           <div className="relative left-1/2 w-[100dvw] -translate-x-1/2 space-y-5 mt-10">
             <div data-mount className="mx-auto w-full max-w-[1280px] space-y-3 px-4 md:px-6">
               <p className="text-[11px] uppercase tracking-[0.34em] text-[color:color-mix(in_srgb,var(--text-strong)_54%,transparent)]">
-                Gallery / Visual archive
+                Gallery / Visual archive (ps these are placeholder, wait for the real ones)
               </p>
               <h2 className="display max-w-[12ch] text-[clamp(2.3rem,4.4vw,4.8rem)] font-semibold uppercase leading-[0.92] tracking-[-0.06em] text-[color:var(--text-strong)]">
                 Photography
               </h2>
             </div>
-            <div data-mount className="h-[min(98vh,940px)] min-h-[720px] w-full px-1 py-4 sm:px-3 md:h-[min(128vh,1080px)] md:min-h-[840px] md:py-6">
+            <div data-mount className="h-[min(98vh,940px)] min-h-[720px] w-full px-1 py-4 sm:px-3 md:h-[min(148vh,1080px)] md:min-h-[840px] md:py-6">
               <DomeGallery
                 fit={0.76}
                 fitBasis="width"
                 minRadius={360}
-                maxRadius={1120}
-                padFactor={0.14}
+                maxRadius={1500}
+                padFactor={0.24}
                 overlayBlurColor="color-mix(in srgb, var(--page-base) 92%, #08070d)"
                 openedImageWidth="min(76vw,520px)"
                 openedImageHeight="min(76vw,520px)"

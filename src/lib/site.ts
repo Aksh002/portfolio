@@ -175,3 +175,117 @@ export const resumeStats = [
   { label: "Primary Focus", value: "Backend + Full-Stack" },
   { label: "Core Stack", value: "Next.js / TS / Python" },
 ];
+
+export const mlResumeProfile = {
+  title: "Machine Learning Engineer | Data-Driven Systems | Full-Stack Developer",
+  summary:
+    "Computer Science student at MIT Bengaluru with hands-on experience building data-driven systems and machine learning pipelines. Skilled in Python, data analysis, recommendation systems, and scalable system design, with a focus on modeling user behavior and delivering production-ready solutions.",
+  availability: "Open to machine learning, data science, backend, and full-stack opportunities.",
+  focusChips: ["Recommendation systems", "Data pipelines", "Production ML"],
+};
+
+export const mlResumeStats = [
+  { label: "ML Focus", value: "Recommenders" },
+  { label: "Data Scale", value: "100K+ users" },
+  { label: "Core Stack", value: "Python / Pandas / sklearn" },
+];
+
+export const mlSkillGroups: SkillGroup[] = [
+  {
+    category: "Languages",
+    items: [
+      { name: "Python", context: "Machine learning pipelines, data analysis, modeling, and backend automation." },
+      { name: "TypeScript", context: "Typed full-stack products and API-driven interfaces." },
+      { name: "JavaScript", context: "Modern web application development and integration work." },
+      { name: "C++ / C", context: "Problem-solving foundations and systems-oriented programming practice." },
+    ],
+  },
+  {
+    category: "Data Science",
+    items: [
+      { name: "Scikit-learn", context: "Collaborative filtering, matrix factorization, evaluation workflows, and model iteration." },
+      { name: "Pandas / NumPy", context: "Data wrangling, feature construction, temporal windows, and numerical analysis." },
+      { name: "SciPy", context: "Sparse matrix workflows and scalable recommender-system computation." },
+      { name: "Seaborn / Matplotlib", context: "Exploratory analysis, drift visualization, and model-behavior reporting." },
+    ],
+  },
+  {
+    category: "Frameworks",
+    items: [
+      { name: "Next.js / React.js", context: "Product UI and full-stack delivery for production web platforms." },
+      { name: "Node.js / Express.js", context: "REST APIs, asynchronous workflows, and service-oriented backend logic." },
+      { name: "WebSockets / REST APIs", context: "Realtime and request-driven integrations across web systems." },
+      { name: "Serverless Architectures", context: "Deployable services with scalable request handling and lower operational overhead." },
+    ],
+  },
+  {
+    category: "Data, Infra, and Tools",
+    items: [
+      { name: "PostgreSQL / Prisma / Drizzle", context: "Relational modeling, typed data access, and transactional application state." },
+      { name: "MongoDB / MySQL / SQLite", context: "Persistence choices across experiments, products, and service prototypes." },
+      { name: "Docker / AWS / CI/CD", context: "Deployment-ready services and reproducible delivery workflows." },
+      { name: "Git / GitHub / Postman", context: "Version control, API validation, and collaborative engineering workflows." },
+    ],
+  },
+];
+
+export const mlExperienceItems: ExperienceItem[] = [
+  {
+    company: "Falak'25 Cultural-Sports Fest, MIT Bengaluru",
+    role: "IT Head",
+    period: "Aug 2025 - Oct 2025",
+    highlights: [
+      "Architected and deployed scalable backend systems for a high-traffic fest platform, achieving 99.9% uptime.",
+      "Supported 50,000+ visitors, 6,500+ users, 5,000+ ticket transactions, and 2,000+ registrations.",
+      "Built role-based admin dashboards for monitoring and decision support; optimized caching to reduce load time by 40%.",
+      "Led a 5-member team, coordinating cross-functional workflows and version control to deliver the system within 2 weeks.",
+    ],
+    tech: ["Next.js", "NextAuth", "TypeScript", "Supabase", "Firebase", "Tailwind CSS", "JavaScript", "Vercel"],
+    outcomes: ["99.9% uptime", "50K+ visitors", "40% faster loads"],
+  },
+];
+
+export const mlResumeProjects = [
+  {
+    slug: "tenflix-recommendation-system",
+    title: "TenFlix",
+    summary:
+      "A hybrid, lifecycle-aware recommender system designed for cold-start, sparse, and mature users with adaptive recommendation strategies.",
+    roles: ["Machine Learning Engineer", "Data Scientist"],
+    stack: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "SciPy",
+      "Scikit-learn",
+      "Sparse Matrices",
+      "Matrix Factorization",
+    ],
+    impact:
+      "Scaled time-aware collaborative filtering to 100K+ users and quantified temporal preference drift with latent embeddings.",
+    links: [{ label: "GitHub", href: "https://github.com/Aksh002" }],
+  },
+  {
+    slug: "paytm-payments-platform-ml-resume",
+    title: "Paytm (Payments Platform)",
+    summary:
+      "A microservices-based payments platform supporting secure P2P and P2M transactions across user and merchant systems.",
+    roles: ["Full-Stack Developer", "Backend Engineer"],
+    stack: [
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "Webhooks",
+      "Docker",
+      "CI/CD",
+      "AWS",
+      "Turborepo",
+    ],
+    impact:
+      "Implemented asynchronous transaction workflows with webhooks and job queues for reliable event-driven processing.",
+    links: [{ label: "GitHub", href: "https://github.com/Aksh002/Paytm-project-adv" }],
+  },
+];

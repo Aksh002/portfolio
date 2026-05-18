@@ -1,0 +1,43 @@
+---
+title: "TenFlix"
+slug: "tenflix-recommendation-system"
+summary: "A hybrid, lifecycle-aware recommendation system that handles cold-start, sparse, and mature users with adaptive strategies and temporal preference modeling."
+roles:
+  - "Machine Learning Engineer"
+  - "Data Scientist"
+stack:
+  - "Python"
+  - "Pandas"
+  - "NumPy"
+  - "SciPy"
+  - "Scikit-learn"
+  - "Sparse Matrices"
+  - "Matrix Factorization"
+  - "TruncatedSVD"
+  - "Cosine Distance"
+impact: "Scaled time-aware collaborative filtering to 100K+ users while quantifying preference drift between early, mid, and recent interaction windows."
+links:
+  - label: "GitHub"
+    href: "https://github.com/Aksh002"
+featured: false
+themeTag: "music"
+order: 4
+---
+
+### Problem
+
+Recommendation systems struggle when every user is at a different lifecycle stage. New users have little data, sparse users have weak signals, and mature users may drift away from older preferences.
+
+### Approach
+
+I designed TenFlix as a hybrid recommender that adapts its strategy to the user's available history and behavior drift:
+
+- built cold-start, temporal, and blended recommendation paths for different user maturity levels
+- modeled preference evolution across early, mid, and recent interaction windows to avoid data leakage
+- implemented sparse matrix factorization with TruncatedSVD on CSR matrices for 100K+ user scale
+- measured preference drift with cosine distance between latent embeddings to separate stable and volatile behavior
+- routed users through a hybrid decision engine that prioritizes recent intent for high-drift profiles
+
+### Outcome
+
+The system became a model-agnostic recommendation pipeline that can support future upgrades like ALS, richer content embeddings, diversity re-ranking, and more realistic offline evaluation strategies.

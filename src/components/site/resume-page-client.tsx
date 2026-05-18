@@ -44,6 +44,11 @@ import { ResumePrintButton } from "@/components/site/resume-print-button";
 import {
   educationItems,
   experienceItems,
+  mlExperienceItems,
+  mlResumeProfile,
+  mlResumeProjects,
+  mlResumeStats,
+  mlSkillGroups,
   profileIntro,
   resumeStats,
   skillGroups,
@@ -63,6 +68,25 @@ type ResumeProjectSummary = {
   summary: string;
   title: string;
 };
+
+type ResumeVariantId = "sde" | "ml";
+
+const resumeVariantOptions: Array<{
+  description: string;
+  id: ResumeVariantId;
+  label: string;
+}> = [
+  {
+    id: "sde",
+    label: "SDE",
+    description: "Backend + full-stack",
+  },
+  {
+    id: "ml",
+    label: "ML",
+    description: "Data + recommender systems",
+  },
+];
 
 const resumeSections = [
   { id: "profile", label: "Profile", meta: "identity" },
@@ -153,7 +177,14 @@ function getTechIcon(name: string): TechIcon | null {
   if (normalized.includes("react")) return IconBrandReact;
   if (normalized.includes("tailwind")) return IconBrandTailwind;
   if (normalized.includes("typescript")) return IconBrandTypescript;
-  if (normalized.includes("python")) return IconBrandPython;
+  if (
+    normalized.includes("python") ||
+    normalized.includes("pandas") ||
+    normalized.includes("numpy") ||
+    normalized.includes("scipy") ||
+    normalized.includes("scikit") ||
+    normalized.includes("matrix")
+  ) return IconBrandPython;
   if (normalized.includes("javascript")) return IconBrandJavascript;
   if (normalized.includes("node.js") || normalized.includes("express")) return IconBrandNodejs;
   if (normalized.includes("c++")) return IconBrandCpp;
@@ -321,6 +352,7 @@ export function ResumePageClient({
 }: {
   projects: ResumeProjectSummary[];
 }) {
+  const [activeResume, setActiveResume] = useState<ResumeVariantId>("sde");
   const [railProgressTarget, setRailProgressTarget] = useState(railStart);
   const [railProgress, setRailProgress] = useState(railStart);
   const [contentEmphasis, setContentEmphasis] = useState<Record<ResumeSectionId, number>>(
@@ -333,6 +365,30 @@ export function ResumePageClient({
   });
   const activeBarWidth = "calc(min(300px, 100vw - 2rem) - 0rem)";
   const activeSection = getActiveRailSection(railProgress);
+  const isMlResume = activeResume === "ml";
+  const currentProfile = isMlResume
+    ? {
+        title: mlResumeProfile.title,
+        summary: mlResumeProfile.summary,
+        availability: mlResumeProfile.availability,
+        focusChips: mlResumeProfile.focusChips,
+      }
+    : {
+        title: profileIntro.title,
+        summary: profileIntro.professionalSummary,
+        availability: profileIntro.availability,
+        focusChips: ["Backend systems", "Full-stack delivery", "Production focus"],
+      };
+  const currentStats = isMlResume ? mlResumeStats : resumeStats;
+  const currentExperience = isMlResume ? mlExperienceItems : experienceItems;
+  const currentProjects = isMlResume ? mlResumeProjects : projects;
+  const currentSkillGroups = isMlResume ? mlSkillGroups : skillGroups;
+  const workTitle = isMlResume
+    ? "Selected builds with recommendation logic, data modeling, and scalable product systems."
+    : "Selected builds with backend depth, product thinking, and visible impact.";
+  const stackTitle = isMlResume
+    ? "Grouped around the data, modeling, and production tools behind the ML resume."
+    : "Grouped by how I actually use the tools, not just by logo count.";
 
   useEffect(() => {
     smoothRailProgress.set(railProgressTarget);
@@ -419,6 +475,16 @@ export function ResumePageClient({
     };
   }, []);
 
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      handleScrollState();
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [activeResume]);
+
   return (
     <section className="space-y-8 pb-8 xl:pl-[11.5rem]">
       <div className="print-hidden flex flex-wrap items-end justify-between gap-4">
@@ -426,8 +492,34 @@ export function ResumePageClient({
           <p className="font-mono text-[11px] uppercase tracking-[0.34em] text-[var(--accent-secondary)]">
             Digital Resume 
           </p>
-          <div className="space-y-3">
-            
+          <div className="flex flex-wrap gap-2 rounded-full border border-[color:var(--resume-line)] bg-[linear-gradient(180deg,var(--resume-panel-top),var(--resume-panel-bottom))] p-1">
+            {resumeVariantOptions.map((option) => {
+              const active = activeResume === option.id;
+
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveResume(option.id);
+                  }}
+                  className={cn(
+                    "inline-flex min-h-11 items-center gap-3 rounded-full px-4 text-left transition duration-300",
+                    active
+                      ? "bg-[color:var(--resume-rail-accent-soft)] text-[color:var(--text-strong)] shadow-[inset_0_0_0_1px_var(--resume-rail-accent)]"
+                      : "text-[color:var(--text-faint)] hover:text-[color:var(--text-strong)]",
+                  )}
+                  aria-pressed={active}
+                >
+                  <span className="font-mono text-[11px] uppercase tracking-[0.26em]">
+                    {option.label}
+                  </span>
+                  <span className="hidden text-xs text-[color:var(--text-soft)] sm:inline">
+                    {option.description}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
         <ResumePrintButton />
@@ -567,25 +659,24 @@ export function ResumePageClient({
                 <div className="space-y-5">
                   <div className="space-y-3">
                     <p className="font-mono text-[11px] uppercase tracking-[0.34em] text-[var(--accent)]">
-                      {profileIntro.title}
+                      {currentProfile.title}
                     </p>
                     <h2 className="max-w-3xl text-[2.15rem] font-semibold tracking-[-0.06em] text-[color:var(--text-strong)] md:text-6xl">
                       {profileIntro.name}
                     </h2>
                   </div>
                   <p className="max-w-3xl text-[14px] leading-6 text-[color:var(--text-muted)] md:text-lg md:leading-8">
-                    {profileIntro.professionalSummary}
+                    {currentProfile.summary}
                   </p>
                   <ResumeChipRack>
-                    <ResumeChip tone="warm">
-                      Backend systems
-                    </ResumeChip>
-                    <ResumeChip tone="cool">
-                      Full-stack delivery
-                    </ResumeChip>
-                    <ResumeChip tone="lime">
-                      Production focus
-                    </ResumeChip>
+                    {currentProfile.focusChips.map((chip, index) => (
+                      <ResumeChip
+                        key={chip}
+                        tone={index === 0 ? "warm" : index === 1 ? "cool" : "lime"}
+                      >
+                        {chip}
+                      </ResumeChip>
+                    ))}
                   </ResumeChipRack>
                 </div>
 
@@ -617,7 +708,7 @@ export function ResumePageClient({
                     ))}
                   </div>
                   <div className="h-px bg-[color:var(--resume-line)]" />
-                  <p className="text-[13px] leading-6 text-[color:var(--text-soft)] md:text-sm md:leading-7">{profileIntro.availability}</p>
+                  <p className="text-[13px] leading-6 text-[color:var(--text-soft)] md:text-sm md:leading-7">{currentProfile.availability}</p>
                 </div>
               </div>
             </section>
@@ -629,7 +720,7 @@ export function ResumePageClient({
               title="Scale, focus, and the systems I like shipping."
             >
               <div className="grid gap-4 md:grid-cols-3">
-                {resumeStats.map((item, index) => (
+                {currentStats.map((item, index) => (
                   <div
                     key={item.label}
                     className="rounded-[24px] border border-[color:var(--resume-line)] bg-[linear-gradient(180deg,var(--resume-panel-top),var(--resume-panel-bottom))] p-4 md:rounded-[28px] md:p-5"
@@ -655,7 +746,7 @@ export function ResumePageClient({
               title="Where I shipped, led, and learned how to scale under pressure."
             >
               <div className="space-y-10">
-                {experienceItems.map((item) => (
+                {currentExperience.map((item) => (
                   <article
                     key={`${item.company}-${item.role}`}
                     className="relative space-y-4 border-t border-[color:var(--resume-line)] pt-5 first:border-t-0 first:pt-0"
@@ -707,10 +798,10 @@ export function ResumePageClient({
               id="work"
               emphasis={contentEmphasis.work}
               eyebrow="Work"
-              title="Selected builds with backend depth, product thinking, and visible impact."
+              title={workTitle}
             >
               <div className="space-y-8">
-                {projects.map((project, index) => (
+                {currentProjects.map((project, index) => (
                   <article
                     key={project.slug}
                     className="grid gap-4 border-t border-[color:var(--resume-line)] pt-5 first:border-t-0 first:pt-0 lg:grid-cols-[72px_minmax(0,1fr)]"
@@ -782,10 +873,10 @@ export function ResumePageClient({
               id="stack"
               emphasis={contentEmphasis.stack}
               eyebrow="Stack"
-              title="Grouped by how I actually use the tools, not just by logo count."
+              title={stackTitle}
             >
               <div className="space-y-8">
-                {skillGroups.map((group) => (
+                {currentSkillGroups.map((group) => (
                   <article
                     key={group.category}
                     className="grid gap-3 border-t border-[color:var(--resume-line)] pt-4 first:border-t-0 first:pt-0 lg:grid-cols-[200px_minmax(0,1fr)]"
